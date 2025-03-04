@@ -4,6 +4,7 @@ import { useContext, useEffect, useState } from 'react';
 import { Link, NavLink } from 'react-router-dom';
 import { DispatchContext, StateContext } from '../../Store/Store';
 import { Navbar } from '../../enums/Navbar';
+import p from '../../../public/img/physics.png';
 
 const getNavbarLinkClass = ({ isActive }: { isActive: boolean }) =>
   classNames(styles.header__navbarItem, {
@@ -40,11 +41,7 @@ export const Header = () => {
     <header className={styles.header}>
       <div className={styles.header__content}>
         <Link to={'/phones'} className={styles.header__logoLink}>
-          <img
-            src="./img/physics.png"
-            alt="Logo"
-            className={styles.header__logo}
-          />
+          <img src={p} alt="Logo" className={styles.header__logo} />
         </Link>
         <div className={styles.header__navbar}>
           {Object.values(Navbar).map(page => (
