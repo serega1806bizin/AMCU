@@ -41,7 +41,7 @@ export const Header = () => {
       <div className={styles.header__content}>
         <Link to={'/phones'} className={styles.header__logoLink}>
           <img
-            src="/img/physics.png"
+            src="./img/physics.png"
             alt="Logo"
             className={styles.header__logo}
           />
