@@ -1,6 +1,5 @@
 import styles from './Footer.module.scss';
 import { Link } from 'react-router-dom';
-import p from '../../../public/img/physics.png';
 
 export const Footer = () => {
   const scrollToTop = () => {
@@ -10,9 +9,6 @@ export const Footer = () => {
   return (
     <footer className={styles.footer}>
       <div className={styles.footer__container}>
-        <Link to={'/'} className={styles.footer__logoLink}>
-          <img src={p} alt="Logo" className={styles.footer__logo} />
-        </Link>
         <div className={styles.footer__linksContainer}>
           <Link
             to="https://t.me/nnngggiiii"
