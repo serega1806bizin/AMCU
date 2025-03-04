@@ -1,21 +1,28 @@
-import React from 'react';
 import './App.scss';
+import './utils/font-styles.scss';
+import { Header } from './components/Header';
+import { Outlet } from 'react-router-dom';
+import { useContext } from 'react';
+import { Menu } from './components/Menu';
+import { Footer } from './components/Footer';
+import { StateContext } from './Store/Store';
 
-interface Props {
-  onClick: () => void;
-  children: React.ReactNode;
-}
+export const App = () => {
+  const { isMenuVisible } = useContext(StateContext);
 
-export const Provider: React.FC<Props> = React.memo(({ onClick, children }) => (
-  <button type="button" onClick={onClick}>
-    {children}
-  </button>
-));
-
-export const App: React.FC = () => {
   return (
-    <div className="starter">
-      <Provider onClick={() => ({})}>TodoList</Provider>
+    <div className="App">
+      <Header />
+      {isMenuVisible ? (
+        <Menu />
+      ) : (
+        <>
+          <main className="main">
+            <Outlet />
+          </main>
+          <Footer />
+        </>
+      )}
     </div>
   );
 };
