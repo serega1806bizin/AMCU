@@ -40,7 +40,7 @@ export const Header = () => {
   return (
     <header className={styles.header}>
       <div className={styles.header__content}>
-        <Link to={'/phones'} className={styles.header__logoLink}>
+        <Link to={'/tasks'} className={styles.header__logoLink}>
           <img src={p} alt="Logo" className={styles.header__logo} />
         </Link>
         <div className={styles.header__navbar}>

@@ -1,7 +1,5 @@
 /* eslint-disable prettier/prettier */
-import React, { useEffect, useReducer } from 'react';
-import { Product } from '../types/Product';
-import { CartProduct } from '../types/CartProduct';
+import React, { useReducer } from 'react';
 
 type Action =
   | { type: 'openMenu' }
@@ -9,8 +7,6 @@ type Action =
 
 interface State {
   isMenuVisible: boolean;
-  favourites: Product[];
-  cart: CartProduct[];
 }
 
 function reducer(state: State, action: Action): State {
@@ -28,8 +24,6 @@ function reducer(state: State, action: Action): State {
 
 const initialState: State = {
   isMenuVisible: false,
-  favourites: JSON.parse(localStorage.getItem('favourites') || '[]'),
-  cart: JSON.parse(localStorage.getItem('cart') || '[]'),
 };
 
 export const StateContext = React.createContext(initialState);
@@ -43,14 +37,6 @@ type Props = {
 
 export const GlobalStateProvider: React.FC<Props> = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, initialState);
-
-  useEffect(() => {
-    localStorage.setItem('favourites', JSON.stringify(state.favourites));
-  }, [state.favourites]);
-
-  useEffect(() => {
-    localStorage.setItem('cart', JSON.stringify(state.cart));
-  }, [state.cart]);
 
   return (
     <DispatchContext.Provider value={dispatch}>

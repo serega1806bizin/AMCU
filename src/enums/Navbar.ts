@@ -1,5 +1,4 @@
 export enum Navbar {
-  phones = 'phones',
-  tablets = 'tablets',
-  accessories = 'accessories',
+  tasks = 'tasks',
+  create = 'create',
 }

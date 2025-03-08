@@ -1,5 +1,5 @@
-@use '../../utils/mixins.scss' as *;
-@use '../../utils/variables.scss' as *;
+@use '/src/utils/mixins.scss' as *;
+@use '/src/utils/variables.scss' as *;
 
 .productPage {
   @include content-padding-inline;
