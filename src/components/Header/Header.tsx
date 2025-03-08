@@ -4,7 +4,9 @@ import { useContext, useEffect, useState } from 'react';
 import { Link, NavLink } from 'react-router-dom';
 import { DispatchContext, StateContext } from '../../Store/Store';
 import { Navbar } from '../../enums/Navbar';
-import p from '../../../public/img/physics.png';
+import logo from '../../../public/img/physics.png';
+import closeIcon from '../../../public/img/icons/close-icon.svg';
+import menuIcon from '../../../public/img/icons/menu-icon.svg';
 
 const getNavbarLinkClass = ({ isActive }: { isActive: boolean }) =>
   classNames(styles.header__navbarItem, {
@@ -41,7 +43,7 @@ export const Header = () => {
     <header className={styles.header}>
       <div className={styles.header__content}>
         <Link to={'/tasks'} className={styles.header__logoLink}>
-          <img src={p} alt="Logo" className={styles.header__logo} />
+          <img src={logo} alt="Logo" className={styles.header__logo} />
         </Link>
         <div className={styles.header__navbar}>
           {Object.values(Navbar).map(page => (
@@ -62,15 +64,9 @@ export const Header = () => {
           }
         >
           {isMenuVisible ? (
-            <img
-              src="/img/icons/close-icon.svg"
-              className={styles.header__closeIcon}
-            />
+            <img src={closeIcon} className={styles.header__closeIcon} />
           ) : (
-            <img
-              src="/img/icons/menu-icon.svg"
-              className={styles.header__menuIcon}
-            />
+            <img src={menuIcon} className={styles.header__menuIcon} />
           )}
         </button>
       </div>
