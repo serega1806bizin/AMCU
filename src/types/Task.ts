@@ -42,7 +42,6 @@ export interface Task {
   id: number;
   nazwa: string;
   nomer: number;
-  link: string;
   totalPoints: number;
   progress: number;
   additional?: string;

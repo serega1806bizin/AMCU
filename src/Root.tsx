@@ -3,6 +3,7 @@ import { App } from './App';
 import { GlobalStateProvider } from './Store/Store';
 import { ProductPage } from './modules/ProductPage';
 import { NotFoundPage } from './components/NotFoundPage';
+import { ConstructorPage } from './modules/ConstructorPage';
 
 export const Root = () => (
   <Router>
@@ -12,8 +13,8 @@ export const Root = () => (
           <Route path="tasks">
             <Route index element={<ProductPage />} />
           </Route>
-          <Route path="tablets">
-            <Route index element={<ProductPage />} />
+          <Route path="create">
+            <Route index element={<ConstructorPage />} />
           </Route>
           <Route path="*" element={<NotFoundPage />} />
         </Route>
