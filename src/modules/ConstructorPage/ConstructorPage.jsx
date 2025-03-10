@@ -10,6 +10,7 @@ import {
   Space,
   Row,
   Col,
+  message,
 } from 'antd';
 // eslint-disable-next-line import/no-extraneous-dependencies
 import TextArea from 'antd/es/input/TextArea';
@@ -85,6 +86,28 @@ export const ConstructorPage = () => {
     addTest(test);
   };
 
+  const onFinishFailed = errorInfo => {
+    if (errorInfo.errorFields && errorInfo.errorFields.length > 0) {
+      const firstErrorField = errorInfo.errorFields[0].name;
+
+      // Прокручиваем к полю с ошибкой
+      form.scrollToField(firstErrorField, {
+        behavior: 'smooth',
+        block: 'center',
+      });
+      // После небольшой задержки получаем экземпляр поля и устанавливаем на него фокус
+      setTimeout(() => {
+        const fieldInstance = form.getFieldInstance(firstErrorField);
+
+        if (fieldInstance && typeof fieldInstance.focus === 'function') {
+          fieldInstance.focus();
+        }
+      }, 600);
+    }
+
+    message.error('Будь ласка, помилки в формі не забудьте поправити!');
+  };
+
   return (
     <Row justify="center" style={{ padding: 10 }}>
       <Col xs={24} sm={20} md={16} lg={12} xl={10}>
@@ -96,6 +119,8 @@ export const ConstructorPage = () => {
           wrapperCol={{ span: 14 }}
           layout="horizontal"
           style={{ maxWidth: 600 }}
+          onFinishFailed={onFinishFailed}
+          scrollToFirstError
         >
           <Divider>Загальна інформація про роботу</Divider>
           <Form.Item
