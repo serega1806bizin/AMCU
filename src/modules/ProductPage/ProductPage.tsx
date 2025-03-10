@@ -9,6 +9,8 @@ import { TestType } from '../../enums/TestType';
 import { Task } from '../../types/Task';
 import { TaskCard } from '../ProductCard';
 
+import icon from '/img/icons/arrow-right-icon.svg';
+
 export const ProductPage = () => {
   const location = useLocation();
   const [testType, setTestType] = useState<TestType | null>(null);
@@ -56,7 +58,7 @@ export const ProductPage = () => {
         <div className={styles.productPage}>
           <div className={styles.productPage__top}>
             <img
-              src="/img/icons/arrow-right-icon.svg"
+              src={icon}
               alt="arrow-right"
               className={styles.productPage__topArrowIcon}
             />
