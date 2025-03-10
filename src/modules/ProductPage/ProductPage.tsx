@@ -9,7 +9,7 @@ import { TestType } from '../../enums/TestType';
 import { Task } from '../../types/Task';
 import { TaskCard } from '../ProductCard';
 
-import icon from '/img/icons/arrow-right-icon.svg';
+import icon from '../../../public/img/icons/arrow-right-icon.svg';
 
 export const ProductPage = () => {
   const location = useLocation();
