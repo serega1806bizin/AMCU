@@ -4,6 +4,7 @@ import { GlobalStateProvider } from './Store/Store';
 import { ProductPage } from './modules/ProductPage';
 import { NotFoundPage } from './components/NotFoundPage';
 import { ConstructorPage } from './modules/ConstructorPage';
+import { FormPage } from './modules/FormPage/FromPage';
 
 export const Root = () => (
   <Router>
@@ -15,6 +16,9 @@ export const Root = () => (
           </Route>
           <Route path="create">
             <Route index element={<ConstructorPage />} />
+          </Route>
+          <Route path="test">
+            <Route path=":testId" element={<FormPage />} />
           </Route>
           <Route path="*" element={<NotFoundPage />} />
         </Route>

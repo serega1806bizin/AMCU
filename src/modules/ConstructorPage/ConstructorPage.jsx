@@ -1,5 +1,4 @@
-import { useState } from 'react';
-// eslint-disable-next-line import/no-extraneous-dependencies
+import { useState, useCallback } from 'react';
 import {
   Checkbox,
   Divider,
@@ -11,11 +10,10 @@ import {
   Row,
   Col,
   message,
+  notification,
 } from 'antd';
-// eslint-disable-next-line import/no-extraneous-dependencies
 import TextArea from 'antd/es/input/TextArea';
 import { TaskItem } from './Task';
-// eslint-disable-next-line import/no-extraneous-dependencies
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 
@@ -24,54 +22,61 @@ export const ConstructorPage = () => {
   const [testName, setTestName] = useState('');
   const [testNumber, setTestNumber] = useState(0);
   const [additionalText, setAdditionalText] = useState('');
-  const [questions, setQuestions] = useState([{ id: 0, points: 0 }]);
+  const [questions, setQuestions] = useState([]);
   const [is1Checked, setIs1Checked] = useState(false);
 
   const navigate = useNavigate();
 
-  const totalPoints = questions.reduce(
-    (sum, question) => sum + question.points,
-    0,
-  );
-
-  const removeQuestion = id => {
-    setQuestions(prev => prev.filter(question => question.id !== id));
-  };
-
-  const updatePoints = (id, newPoints) => {
-    setQuestions(prev =>
-      prev.map(q => (q.id === id ? { ...q, points: newPoints } : q)),
-    );
-  };
+  const totalPoints = questions.reduce((sum, q) => sum + q.points, 0);
 
   const API_URL = 'https://stradanie-production-f14d.up.railway.app/api/tests';
 
-  // Функция отправки теста на сервер
+  // Уведомление об успехе
+  const openSuccessNotification = useCallback(() => {
+    notification.success({
+      message: 'Успіх!',
+      description: 'Тест успішно створений!',
+      placement: 'topRight',
+      duration: 3,
+    });
+  }, []);
+
+  const addQuestion = () => {
+    setQuestions(prev => [...prev, { id: Date.now(), points: 0 }]);
+  };
+
+  const removeQuestion = useCallback(id => {
+    setQuestions(prev => prev.filter(q => q.id !== id));
+  }, []);
+
+  // Обновление количества баллов в вопросе
+  const updatePoints = useCallback((id, newPoints) => {
+    setQuestions(prev =>
+      prev.map(q => (q.id === id ? { ...q, points: newPoints } : q)),
+    );
+  }, []);
+
+  // Добавление теста в БД
   const addTest = async test => {
     try {
-      // eslint-disable-next-line @typescript-eslint/no-unused-vars
-      const response = await axios.post(API_URL, test);
-
-      // Обработка успешного ответа (например, обновление состояния или уведомление)
-      alert('Тест успешно опубликован!');
+      await axios.post(API_URL, test);
+      openSuccessNotification();
       navigate('/tasks');
     } catch (error) {
       // eslint-disable-next-line no-console
-      console.error('Ошибка при добавлении:', error);
-      alert('Ошибка при сохранении теста.');
+      console.error('Помилка при додаванні:', error);
+      message.error('Не вдалося створити тест. Перевірте підключення!');
     }
   };
 
-  // onFinish вызывается только если все поля пройдены валидацию
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const onFinish = values => {
+  // Отправка формы
+  const onFinish = useCallback(() => {
     if (questions.length === 0) {
-      alert('Ви повинні додати хоча б одне питання');
+      message.warning('Ви повинні додати хоча б одне питання');
 
       return;
     }
 
-    // Собираем объект теста, объединяя данные из формы и состояние
     const test = {
       type: 'task',
       id: Date.now(),
@@ -80,33 +85,33 @@ export const ConstructorPage = () => {
       totalPoints,
       progress: 0,
       additional: additionalText,
-      questions: questions,
+      questions,
     };
 
     addTest(test);
-  };
+  }, [testName, testNumber, totalPoints, additionalText, questions]);
 
-  const onFinishFailed = errorInfo => {
-    if (errorInfo.errorFields && errorInfo.errorFields.length > 0) {
-      const firstErrorField = errorInfo.errorFields[0].name;
+  // Обработка ошибок валидации формы
+  const onFinishFailed = useCallback(
+    errorInfo => {
+      if (errorInfo.errorFields?.length > 0) {
+        const firstErrorField = errorInfo.errorFields[0].name;
 
-      // Прокручиваем к полю с ошибкой
-      form.scrollToField(firstErrorField, {
-        behavior: 'smooth',
-        block: 'center',
-      });
-      // После небольшой задержки получаем экземпляр поля и устанавливаем на него фокус
-      setTimeout(() => {
-        const fieldInstance = form.getFieldInstance(firstErrorField);
+        form.scrollToField(firstErrorField, {
+          behavior: 'smooth',
+          block: 'center',
+        });
+        setTimeout(() => {
+          const fieldInstance = form.getFieldInstance(firstErrorField);
 
-        if (fieldInstance && typeof fieldInstance.focus === 'function') {
-          fieldInstance.focus();
-        }
-      }, 600);
-    }
+          fieldInstance?.focus();
+        }, 600);
+      }
 
-    message.error('Будь ласка, помилки в формі не забудьте поправити!');
-  };
+      message.error('Будь ласка, виправте помилки у формі!');
+    },
+    [form],
+  );
 
   return (
     <Row justify="center" style={{ padding: 10 }}>
@@ -129,13 +134,15 @@ export const ConstructorPage = () => {
             labelCol={{ span: 4.6 }}
             rules={[{ required: true, message: 'Будь-ласка введіть тему' }]}
           >
-            <Input id="name" onChange={e => setTestName(e.target.value)} />
+            <Input onChange={e => setTestName(e.target.value)} />
           </Form.Item>
           <Form.Item
             labelCol={{ span: 3 }}
             label="Номер:"
             name="Nomer"
-            rules={[{ required: true, message: 'Будь-ласка, номер роботи' }]}
+            rules={[
+              { required: true, message: 'Будь-ласка, введіть номер роботи' },
+            ]}
           >
             <InputNumber onChange={value => setTestNumber(Number(value))} />
           </Form.Item>
@@ -156,7 +163,7 @@ export const ConstructorPage = () => {
                 },
                 {
                   min: 10,
-                  message: 'Коментар не менше 10 символів!',
+                  message: 'Коментар повинен бути не менше 10 символів!',
                 },
               ]}
             >
@@ -164,8 +171,9 @@ export const ConstructorPage = () => {
             </Form.Item>
           )}
           <Divider>Тепер створюємо питання</Divider>
-          {questions.map(question => (
+          {questions.map((question, index) => (
             <TaskItem
+              index={index}
               key={question.id}
               id={question.id}
               points={question.points}
@@ -181,25 +189,15 @@ export const ConstructorPage = () => {
           <Divider />
           <p>Загальна кількість балів: {totalPoints}</p>
           <Space
-            style={{
-              width: '100%',
-              marginTop: 10,
-              marginBottom: 10,
-            }}
+            style={{ width: '100%', marginTop: 10, marginBottom: 10 }}
             wrap
             align="center"
             size="middle"
           >
             <Button
               type="dashed"
-              style={{
-                flex: 1,
-                minWidth: 200,
-                borderColor: 'green',
-              }}
-              onClick={() =>
-                setQuestions(prev => [...prev, { id: prev.length, points: 0 }])
-              }
+              style={{ flex: 1, minWidth: 200, borderColor: 'green' }}
+              onClick={addQuestion}
             >
               Додати питання
             </Button>

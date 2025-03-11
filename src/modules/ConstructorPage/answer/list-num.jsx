@@ -85,7 +85,6 @@ export const List_num = ({ onChange, fieldName }) => {
                 controls={false}
                 onClick={e => e.target.select()}
                 value={item}
-                min={0}
                 placeholder={`Число ${index + 1}`}
                 onChange={value => updateItem(index, value)}
                 style={{

@@ -20,7 +20,7 @@ import { List_reber } from './answer/list-reber';
 import { List_num } from './answer/list-num';
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-export const TaskItem = ({ id, onDelete, onPointsChange, onUpdate }) => {
+export const TaskItem = ({ id, onDelete, onPointsChange, onUpdate, index }) => {
   const [selectedType, setSelectedType] = useState('text');
   const [additionalData, setAdditionalData] = useState({});
   const [is2Checked, setIs2Checked] = useState(false);
@@ -133,7 +133,7 @@ export const TaskItem = ({ id, onDelete, onPointsChange, onUpdate }) => {
 
   return (
     <Card style={{ marginBottom: 10 }}>
-      <b>Питання №{id + 1}</b>
+      <b>Питання №{index + 1}</b>
       <Form.Item
         label="Виберіть тип:"
         name={`Тип завдання_${id}`}
