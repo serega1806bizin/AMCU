@@ -165,6 +165,13 @@ export const FormPage = () => {
         console.log('Прогресс обновлён и данные сохранены:', data);
         message.success('Відповідь успішно відправлено!');
         window.close(); // Если нужно сразу закрыть окно
+        form.resetFields();
+        // Сброс локального состояния:
+        setFormData({
+          studentName: '',
+          group: '',
+          answers: {},
+        });
       })
       .catch(error => {
         // eslint-disable-next-line no-console
