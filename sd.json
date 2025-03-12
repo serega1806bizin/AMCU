@@ -1,0 +1,78 @@
+{
+  "id": 1741813705635,
+  "type": "task",
+  "nazwa": "Сложная работа",
+  "nomer": 4,
+  "totalPoints": 23,
+  "progress": 1,
+  "additional": "",
+  "questions": [
+    {
+      "id": 1741813444069,
+      "points": 4,
+      "type": "text",
+      "text": "Кто ваша мать",
+      "answer": "МАМА"
+    },
+    {
+      "id": 1741813457380,
+      "points": 5,
+      "type": "number",
+      "text": "2+2=",
+      "answer": 4
+    },
+    {
+      "id": 1741813500396,
+      "points": 2,
+      "type": "list-num",
+      "text": "ПОРАХУЙТЕ от 1-5",
+      "answer": { "massiv": [1, 2, 3, 4, 5], "consistencyImportant": true }
+    },
+    {
+      "id": 1741813544608,
+      "points": 3,
+      "type": "matrix",
+      "text": "Матриця 2 на 2 один",
+      "answer": [
+        [1, 1],
+        [0, 1]
+      ]
+    },
+    {
+      "id": 1741813576819,
+      "points": 1,
+      "type": "variants",
+      "text": "Женского рода:",
+      "answer": {
+        "variants": ["мама", "дед", "бабушка", "ростик"],
+        "correct": [1, 0, 1, 0]
+      }
+    },
+    {
+      "id": 1741813609677,
+      "points": 4,
+      "type": "list-pars",
+      "text": "Довільні пари парних цифр",
+      "answer": {
+        "pairs": [
+          [2, 4],
+          [6, 4],
+          [8, 6],
+          [0, 9]
+        ],
+        "consistencyImportant": false
+      }
+    },
+    {
+      "id": 1741813671965,
+      "points": 4,
+      "type": "list-reber",
+      "text": "Введіть всі ребра що бачите на екрані",
+      "answer": [
+        [5, 6],
+        [4, 7],
+        [4, 5]
+      ]
+    }
+  ]
+}

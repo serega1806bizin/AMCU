@@ -5,14 +5,16 @@ import { ProductPage } from './modules/ProductPage';
 import { NotFoundPage } from './components/NotFoundPage';
 import { ConstructorPage } from './modules/ConstructorPage';
 import { FormPage } from './modules/FormPage/FromPage';
+import { DetailsTask } from './modules/DetailsTask';
 
 export const Root = () => (
   <Router>
     <GlobalStateProvider>
       <Routes>
         <Route path="/" element={<App />}>
-          <Route path="tasks">
+          <Route path="task">
             <Route index element={<ProductPage />} />
+            <Route path=":taskId" element={<DetailsTask />} />
           </Route>
           <Route path="create">
             <Route index element={<ConstructorPage />} />

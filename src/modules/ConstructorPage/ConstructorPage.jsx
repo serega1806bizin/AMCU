@@ -61,7 +61,7 @@ export const ConstructorPage = () => {
     try {
       await axios.post(API_URL, test);
       openSuccessNotification();
-      navigate('/tasks');
+      navigate('/task');
     } catch (error) {
       // eslint-disable-next-line no-console
       console.error('Помилка при додаванні:', error);

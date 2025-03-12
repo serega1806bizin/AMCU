@@ -39,6 +39,12 @@ export const Header = () => {
     return () => window.removeEventListener('resize', handleResize);
   }, [dispatch, isMenuVisible, wasMenuOpen]);
 
+  // Объект для отображаемых имен
+  const navLabels: Record<string, string> = {
+    task: 'роботи',
+    create: 'Створити роботу',
+  };
+
   return (
     <header className={styles.header}>
       <div className={styles.header__content}>
@@ -48,7 +54,7 @@ export const Header = () => {
         <div className={styles.header__navbar}>
           {Object.values(Navbar).map(page => (
             <NavLink to={page} className={getNavbarLinkClass} key={page}>
-              {page}
+              {navLabels[page] || page}
             </NavLink>
           ))}
         </div>
