@@ -11,6 +11,7 @@ import {
 // eslint-disable-next-line import/no-extraneous-dependencies
 import { PlusOutlined, DeleteOutlined } from '@ant-design/icons';
 import Paragraph from 'antd/es/typography/Paragraph';
+import { QuestionImages } from './QuestionImages';
 
 const { Text } = Typography;
 
@@ -51,6 +52,7 @@ export const List_reber = ({ question, onChange, index1 }) => {
     <Card>
       <b>Питання №{index1 + 1}</b>
       <Paragraph>{question.text}</Paragraph>
+      <QuestionImages images={question.Images} />
       <Form.Item
         label="Список:"
         name={`list_reber_${question.id}`}

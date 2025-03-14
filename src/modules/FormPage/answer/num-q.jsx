@@ -1,5 +1,6 @@
 import React from 'react';
 import { Typography, Form, InputNumber, Card } from 'antd';
+import { QuestionImages } from './QuestionImages';
 
 const { Paragraph } = Typography;
 
@@ -13,6 +14,7 @@ export const Num_q = ({ question, onChange, index1 }) => {
     <Card>
       <b>Питання №{index1 + 1}</b>
       <Paragraph>{question.text}</Paragraph>
+      <QuestionImages images={question.Images} />
       <Form.Item
         label="Ваша відповідь"
         name={`answer_${question.id}`}

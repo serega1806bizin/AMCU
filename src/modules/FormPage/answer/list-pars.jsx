@@ -11,6 +11,7 @@ import {
 // eslint-disable-next-line import/no-extraneous-dependencies
 import { PlusOutlined, DeleteOutlined } from '@ant-design/icons';
 import Paragraph from 'antd/es/typography/Paragraph';
+import { QuestionImages } from './QuestionImages';
 
 const { Text } = Typography;
 
@@ -51,7 +52,9 @@ export const List_pars = ({ question, onChange, index1 }) => {
     <Card>
       <b>Питання №{index1 + 1}</b>
       <Paragraph>{question.text}</Paragraph>
+      <QuestionImages images={question.Images} />
       <Form.Item
+        labelCol={{ span: 4.6 }}
         label="Список пар"
         name={`list_pars_${question.id}`}
         rules={[{ required: true, message: 'Заповніть список пар чисел' }]}

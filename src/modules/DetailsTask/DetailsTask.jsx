@@ -1,9 +1,9 @@
 /* eslint-disable no-console */
 import React, { useEffect, useState } from 'react';
 import { Link, useNavigate, useParams } from 'react-router-dom';
-import { Table, Space, Input, Flex, Button, Modal } from 'antd';
+import { Table, Space, Input, Flex, Button, Modal, Tooltip } from 'antd';
 // eslint-disable-next-line import/no-extraneous-dependencies
-import { AudioOutlined } from '@ant-design/icons';
+import { AudioOutlined, CopyOutlined } from '@ant-design/icons';
 import { handleBackButton } from '../../utils/handleBackButton';
 import styles from './DetailsTask.module.scss';
 
@@ -175,6 +175,17 @@ export const DetailsTask = () => {
     recognition.start();
   };
 
+  const url = `https://serega1806bizin.github.io/kursova-robota/#/test/${taskId}`;
+
+  const copyUrl = async () => {
+    try {
+      await navigator.clipboard.writeText(url);
+      message.success('Ссылка скопирована!');
+    } catch (error) {
+      message.error('Ошибка при копировании');
+    }
+  };
+
   return (
     <div className={styles.productDetails}>
       <section className={styles.productDetails__top}>
@@ -204,14 +215,27 @@ export const DetailsTask = () => {
             className={styles.productDetails__backText}
             onClick={handleBackButton}
           >
-            Back
+            Назад
           </button>
         </div>
         <h2 className={styles.productDetails__title}>{test?.name}</h2>
       </section>
-
       {/* Поле поиска с голосовым вводом */}
       <div style={{ padding: '20px' }}>
+        <p>Покликання на тест:</p>
+
+        <div
+          style={{ display: 'flex', alignItems: 'center', marginBottom: 20 }}
+        >
+          <Link to={`/test/${taskId}`}>{url}</Link>
+          <Tooltip title="Скопіювати">
+            <CopyOutlined
+              onClick={copyUrl}
+              style={{ marginLeft: 8, cursor: 'pointer' }}
+            />
+          </Tooltip>
+        </div>
+
         <Flex
           wrap
           gap="small"

@@ -18,6 +18,7 @@ import { Variants_q } from './answer/variants-q';
 import { List_pars } from './answer/list-pars';
 import { List_reber } from './answer/list-reber';
 import { List_num } from './answer/list-num';
+import axios from 'axios';
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 export const TaskItem = ({ id, onDelete, onPointsChange, onUpdate, index }) => {
@@ -190,11 +191,45 @@ export const TaskItem = ({ id, onDelete, onPointsChange, onUpdate, index }) => {
         <>
           <Upload
             // eslint-disable-next-line @typescript-eslint/no-unused-vars
-            customRequest={({ file, onSuccess }) => {
-              setTimeout(() => {
-                // eslint-disable-next-line @typescript-eslint/no-unused-expressions
-                onSuccess && onSuccess('ok');
-              }, 1000);
+            customRequest={async ({ file, onSuccess, onError }) => {
+              try {
+                // Подготовим FormData
+                const formData = new FormData();
+
+                // questionId – это id вопроса, который вы передаёте в TaskItem
+                formData.append('questionId', id);
+                // "images" – это имя поля, которое сервер ждёт в upload.array('images', 8)
+                formData.append('images', file);
+
+                // Отправляем POST-запрос на сервер
+                const response = await axios.post(
+                  'https://stradanie-production-f14d.up.railway.app/upload',
+                  formData,
+                  {
+                    headers: {
+                      'Content-Type': 'multipart/form-data',
+                    },
+                  },
+                );
+
+                // Предположим, сервер возвращает { urls: [ ... ] }
+                onSuccess(response.data, file);
+
+                // Сохраняем полученные ссылки в additionalData,
+                // чтобы при сохранении вопроса они попали в поле Images
+                const { urls } = response.data;
+
+                // Если вы хотите хранить все ссылки в массиве Images,
+                // можно объединять их с предыдущими, чтобы поддерживать мультизагрузку
+                setAdditionalData(prev => ({
+                  ...prev,
+                  Images: [...(prev.Images || []), ...urls],
+                }));
+              } catch (error) {
+                // eslint-disable-next-line no-console
+                console.error('Ошибка загрузки:', error);
+                onError(error);
+              }
             }}
             listType="picture-card"
             fileList={fileList}

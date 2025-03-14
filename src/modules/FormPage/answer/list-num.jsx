@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Button, Card, InputNumber, Divider, Form, Typography } from 'antd';
 // eslint-disable-next-line import/no-extraneous-dependencies
 import { PlusOutlined, DeleteOutlined } from '@ant-design/icons';
+import { QuestionImages } from './QuestionImages';
 
 const { Paragraph } = Typography;
 
@@ -40,7 +41,9 @@ export const List_num = ({ question, onChange, index1 }) => {
     <Card>
       <b>Питання №{index1 + 1}</b>
       <Paragraph>{question.text}</Paragraph>
+      <QuestionImages images={question.Images} />
       <Form.Item
+        labelCol={{ span: 4.6 }}
         label="Ваша відповідь"
         name={`answer_${question.id}`}
         rules={[

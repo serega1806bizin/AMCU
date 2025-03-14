@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Checkbox, Typography, Space, Card, Form } from 'antd';
+import { QuestionImages } from './QuestionImages';
 
 // eslint-disable-next-line @typescript-eslint/naming-convention
 export const Variant_Q = ({ question, onChange, index1 }) => {
@@ -25,6 +26,7 @@ export const Variant_Q = ({ question, onChange, index1 }) => {
     <Card>
       <b>Питання №{index1 + 1}</b>
       <Typography.Paragraph>{text}</Typography.Paragraph>
+      <QuestionImages images={question.Images} />
       <Form.Item>
         <Space direction="vertical" size="middle" style={{ marginTop: 8 }}>
           {variants.map((variant, index) => (

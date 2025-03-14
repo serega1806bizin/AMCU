@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Form, InputNumber, Card } from 'antd';
 import Paragraph from 'antd/es/typography/Paragraph';
+import { QuestionImages } from './QuestionImages';
 
 // eslint-disable-next-line @typescript-eslint/naming-convention
 export const Matrix_q = ({ question, onChange, index1 }) => {
@@ -47,6 +48,7 @@ export const Matrix_q = ({ question, onChange, index1 }) => {
     <Card>
       <b>Питання №{index1 + 1}</b>
       <Paragraph>{question.text}</Paragraph>
+      <QuestionImages images={question.Images} />
       <Form.Item
         label="Кількість рядків"
         name={`matrix_${question.id}_rows`}
