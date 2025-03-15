@@ -112,7 +112,7 @@ export const App = () => {
                       autoComplete="off"
                     >
                       <Form.Item<FieldType>
-                        label="Имя пользователя"
+                        label="Ім'я користувача"
                         name="username"
                         rules={[
                           {
