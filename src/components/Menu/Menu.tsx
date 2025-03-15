@@ -5,10 +5,17 @@ import { NavLink } from 'react-router-dom';
 import { DispatchContext } from '../../Store/Store';
 import { Navbar } from '../../enums/Navbar';
 
+// Функция для установки класса активной ссылки
 const getNavLinkClass = ({ isActive }: { isActive: boolean }) =>
   classNames(styles.menu__navLink, {
     [styles['is-active']]: isActive,
   });
+
+// Объект с переводами для навигационных ссылок
+const navLabels: Record<string, string> = {
+  [Navbar.task]: 'роботи',
+  [Navbar.create]: 'Створити роботу',
+};
 
 export const Menu = () => {
   const dispatch = useContext(DispatchContext);
@@ -24,7 +31,7 @@ export const Menu = () => {
                 className={getNavLinkClass}
                 onClick={() => dispatch({ type: 'closeMenu' })}
               >
-                {page}
+                {navLabels[page] || page}
               </NavLink>
             </li>
           ))}
