@@ -48,7 +48,7 @@ export const App = () => {
 
   useEffect(() => {
     if (!isAuth && isProtectedRoute) {
-      message.warning('Сначала войдите');
+      message.warning('Cперш відійдіть');
     }
   }, [isAuth, isProtectedRoute]);
 
@@ -77,7 +77,7 @@ export const App = () => {
       message.success('Успішний вхід');
       navigate('/task');
     } else {
-      message.error('Неверные учетные данные');
+      message.error('Невірні учетні дані');
     }
   };
 
@@ -99,7 +99,7 @@ export const App = () => {
                   minHeight: '100vh',
                 }}
               >
-                <Row justify="center" style={{ width: '100%' }}>
+                <Row justify="center" style={{ width: '100%', padding: 10 }}>
                   <Col xs={24} sm={20} md={16} lg={12} xl={10}>
                     <Form
                       name="basic"
