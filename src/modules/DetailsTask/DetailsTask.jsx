@@ -1,7 +1,17 @@
 /* eslint-disable no-console */
 import React, { useEffect, useState } from 'react';
 import { Link, useNavigate, useParams } from 'react-router-dom';
-import { Table, Space, Input, Flex, Button, Modal, Tooltip } from 'antd';
+import {
+  Table,
+  Space,
+  Input,
+  Flex,
+  Button,
+  Modal,
+  Tooltip,
+  Row,
+  Col,
+} from 'antd';
 // eslint-disable-next-line import/no-extraneous-dependencies
 import { AudioOutlined, CopyOutlined } from '@ant-design/icons';
 import { handleBackButton } from '../../utils/handleBackButton';
@@ -187,106 +197,118 @@ export const DetailsTask = () => {
   };
 
   return (
-    <div className={styles.productDetails}>
-      <section className={styles.productDetails__top}>
-        <div className={styles.productDetails__breadcrumbs}>
-          <Link
-            to={`/${test?.type}`}
-            className={styles.productDetails__breadcrumbsHomeIcon}
-          />
-          <div className={styles.productDetails__breadcrumbsArrowIcon} />
-          <Link
-            to={`/${test?.type}`}
-            className={styles.productDetails__breadcrumbsCategory}
-          >
-            Всі роботи
-          </Link>
-          <div className={styles.productDetails__breadcrumbsArrowIcon} />
-          <span className={styles.productDetails__breadcrumbsName}>
-            {test?.nazwa}
-          </span>
-        </div>
-        <div className={styles.productDetails__back}>
-          <button
-            className={styles.productDetails__backArrow}
-            onClick={handleBackButton}
-          />
-          <button
-            className={styles.productDetails__backText}
-            onClick={handleBackButton}
-          >
-            Назад
-          </button>
-        </div>
-        <h2 className={styles.productDetails__title}>{test?.name}</h2>
-      </section>
-      {/* Поле поиска с голосовым вводом */}
-      <div style={{ padding: '20px' }}>
-        <p>Покликання на тест:</p>
-
-        <div
-          style={{ display: 'flex', alignItems: 'center', marginBottom: 20 }}
-        >
-          <Link to={`/test/${taskId}`}>{url}</Link>
-          <Tooltip title="Скопіювати">
-            <CopyOutlined
-              onClick={copyUrl}
-              style={{ marginLeft: 8, cursor: 'pointer' }}
-            />
-          </Tooltip>
-        </div>
-
-        <Flex
-          wrap
-          gap="small"
-          justify="center"
-          style={{ marginBottom: '16px' }}
-        >
-          <Button type="primary" danger onClick={showModal}>
-            Видалити цей тест
-          </Button>
-          <Button style={{ backgroundColor: 'yellow' }}>
-            Відкоригувати цей тест
-          </Button>
-          <Modal
-            title="Підтвердження видалення"
-            open={isModalVisible}
-            onOk={handleOk}
-            onCancel={handleCancel}
-            okText="Видалити"
-            cancelText="Скасувати"
-            okButtonProps={{ danger: true }}
-          >
-            <p>Ви точно бажаєте видалити цей тест?</p>
-            <p>
-              <strong>Його не можливо буде відновити!</strong>
-            </p>
-          </Modal>
-        </Flex>
-        <div style={{ marginBottom: '16px' }}>
-          <Search
-            value={searchValue} // Теперь можно редактировать поле вручную
-            placeholder="Пошук студента по імені"
-            enterButton="Пошук"
-            size="large"
-            suffix={
-              <AudioOutlined
-                style={{ fontSize: 16, color: '#1677ff', cursor: 'pointer' }}
-                onClick={startVoiceRecognition} // Клик по микрофону активирует голосовой поиск
+    <Row justify="center">
+      <Col xs={24} sm={20} md={16} lg={12} xl={10}>
+        <div className={styles.productDetails}>
+          <section className={styles.productDetails__top}>
+            <div className={styles.productDetails__breadcrumbs}>
+              <Link
+                to={`/${test?.type}`}
+                className={styles.productDetails__breadcrumbsHomeIcon}
               />
-            }
-            onChange={e => onSearch(e.target.value)} // Теперь можно вводить вручную
-            onSearch={onSearch}
-          />
-        </div>
+              <div className={styles.productDetails__breadcrumbsArrowIcon} />
+              <Link
+                to={`/${test?.type}`}
+                className={styles.productDetails__breadcrumbsCategory}
+              >
+                Всі роботи
+              </Link>
+              <div className={styles.productDetails__breadcrumbsArrowIcon} />
+              <span className={styles.productDetails__breadcrumbsName}>
+                {test?.nazwa}
+              </span>
+            </div>
+            <div className={styles.productDetails__back}>
+              <button
+                className={styles.productDetails__backArrow}
+                onClick={handleBackButton}
+              />
+              <button
+                className={styles.productDetails__backText}
+                onClick={handleBackButton}
+              >
+                Назад
+              </button>
+            </div>
+            <h2 className={styles.productDetails__title}>{test?.name}</h2>
+          </section>
+          {/* Поле поиска с голосовым вводом */}
+          <div style={{ padding: '20px' }}>
+            <p>Покликання на тест:</p>
 
-        {/* Таблица */}
-        <Table
-          columns={columns}
-          dataSource={filteredData}
-          scroll={{ x: 'max-content' }}
-        />
-      </div>
-    </div>
+            <div
+              style={{
+                display: 'flex',
+                alignItems: 'center',
+                marginBottom: 20,
+              }}
+            >
+              <Link to={`/test/${taskId}`}>{url}</Link>
+              <Tooltip title="Скопіювати">
+                <CopyOutlined
+                  onClick={copyUrl}
+                  style={{ marginLeft: 8, cursor: 'pointer' }}
+                />
+              </Tooltip>
+            </div>
+
+            <Flex
+              wrap
+              gap="small"
+              justify="center"
+              style={{ marginBottom: '16px' }}
+            >
+              <Button type="primary" danger onClick={showModal}>
+                Видалити цей тест
+              </Button>
+              <Button style={{ backgroundColor: 'yellow' }}>
+                Відкоригувати цей тест
+              </Button>
+              <Modal
+                title="Підтвердження видалення"
+                open={isModalVisible}
+                onOk={handleOk}
+                onCancel={handleCancel}
+                okText="Видалити"
+                cancelText="Скасувати"
+                okButtonProps={{ danger: true }}
+              >
+                <p>Ви точно бажаєте видалити цей тест?</p>
+                <p>
+                  <strong>Його не можливо буде відновити!</strong>
+                </p>
+              </Modal>
+            </Flex>
+            <div style={{ marginBottom: '16px' }}>
+              <Search
+                value={searchValue} // Теперь можно редактировать поле вручную
+                placeholder="Пошук студента по імені"
+                enterButton="Пошук"
+                size="large"
+                suffix={
+                  <AudioOutlined
+                    style={{
+                      fontSize: 16,
+                      color: '#1677ff',
+                      cursor: 'pointer',
+                    }}
+                    onClick={startVoiceRecognition} // Клик по микрофону активирует голосовой поиск
+                  />
+                }
+                onChange={e => onSearch(e.target.value)} // Теперь можно вводить вручную
+                onSearch={onSearch}
+              />
+            </div>
+
+            {/* Таблица */}
+            <Table
+              columns={columns}
+              dataSource={filteredData}
+              scroll={{ x: 'max-content' }}
+            />
+          </div>
+        </div>
+      </Col>
+    </Row>
   );
 };

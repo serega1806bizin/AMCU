@@ -16,6 +16,8 @@ import TextArea from 'antd/es/input/TextArea';
 import { TaskItem } from './Task';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import { handleBackButton } from '../../utils/handleBackButton';
+import styles from '../DetailsTask/DetailsTask.module.scss';
 
 export const ConstructorPage = () => {
   const [form] = Form.useForm();
@@ -115,6 +117,18 @@ export const ConstructorPage = () => {
 
   return (
     <Row justify="center" style={{ padding: 10 }}>
+      <div className={styles.productDetails__back}>
+        <button
+          className={styles.productDetails__backArrow}
+          onClick={handleBackButton}
+        />
+        <button
+          className={styles.productDetails__backText}
+          onClick={handleBackButton}
+        >
+          Назад
+        </button>
+      </div>
       <Col xs={24} sm={20} md={16} lg={12} xl={10}>
         <h1>Створення тесту</h1>
         <Form
