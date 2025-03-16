@@ -11,7 +11,6 @@ import { Button, Col, Form, FormProps, Input, message, Row } from 'antd';
 type FieldType = {
   username?: string;
   password?: string;
-  remember?: boolean;
 };
 
 export const App = () => {
