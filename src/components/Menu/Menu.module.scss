@@ -2,6 +2,11 @@
 @use '../../utils/mixins.scss' as *;
 
 .menu {
+  &__logoutButton {
+    width: 100%;
+    margin-top: 10px;
+  }
+
   &__topBar {
     display: flex;
     justify-content: space-between;

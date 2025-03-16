@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Checkbox, Typography, Space, Card, Form } from 'antd';
+import { Checkbox, Typography, Space, Card, Form, Tooltip } from 'antd';
 import { QuestionImages } from './QuestionImages';
 
 // eslint-disable-next-line @typescript-eslint/naming-convention
@@ -35,7 +35,19 @@ export const Variant_Q = ({ question, onChange, index1 }) => {
               checked={!!checked[index]}
               onChange={e => handleCheckboxChange(index, e)}
             >
-              {variant}
+              <Tooltip title={variant}>
+                <span
+                  style={{
+                    display: 'inline-block',
+                    maxWidth: 300, // можно задать нужное значение или использовать процентное соотношение
+                    overflow: 'hidden',
+                    whiteSpace: 'nowrap',
+                    textOverflow: 'ellipsis',
+                  }}
+                >
+                  {variant}
+                </span>
+              </Tooltip>
             </Checkbox>
           ))}
         </Space>

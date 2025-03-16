@@ -7,6 +7,7 @@ import { Menu } from './components/Menu';
 import { Footer } from './components/Footer';
 import { StateContext } from './Store/Store';
 import { Button, Col, Form, Input, message, Row } from 'antd';
+// eslint-disable-next-line import/no-extraneous-dependencies
 import { motion } from 'framer-motion';
 
 type FieldType = {
@@ -107,38 +108,58 @@ export const App = () => {
                 <Row justify="center" style={{ width: '100%', padding: 10 }}>
                   <Col xs={24} sm={20} md={16} lg={12} xl={10}>
                     <motion.div
+                      // eslint-disable-next-line max-len
                       className="bg-white p-6 rounded-2xl shadow-xl w-full max-w-sm"
                       initial={{ scale: 0.9 }}
                       animate={{ scale: 1 }}
                       transition={{ duration: 0.3 }}
                     >
-                      <h2 className="text-2xl font-semibold text-center mb-4">Вхід</h2>
+                      <h2 className="text-2xl font-semibold text-center mb-4">
+                        Вхід
+                      </h2>
                       <Form name="basic" layout="vertical" onFinish={onFinish}>
                         <Form.Item
                           label="Ім'я користувача"
                           name="username"
-                          rules={[{ required: true, message: "Введіть ім'я користувача!" }]}
+                          rules={[
+                            {
+                              required: true,
+                              message: "Введіть ім'я користувача!",
+                            },
+                          ]}
                         >
-                          <Input placeholder="Введіть ім'я" className="rounded-lg p-2 text-lg" />
+                          <Input
+                            placeholder="Введіть ім'я"
+                            className="rounded-lg p-2 text-lg"
+                          />
                         </Form.Item>
 
                         <Form.Item
                           label="Пароль"
                           name="password"
-                          rules={[{ required: true, message: "Введіть пароль!" }]}
+                          rules={[
+                            { required: true, message: 'Введіть пароль!' },
+                          ]}
                         >
-                          <Input.Password placeholder="••••••••" className="rounded-lg p-2 text-lg" />
+                          <Input.Password
+                            placeholder="••••••••"
+                            className="rounded-lg p-2 text-lg"
+                          />
                         </Form.Item>
 
                         <Form.Item>
-                          <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+                          <motion.div
+                            whileHover={{ scale: 1.05 }}
+                            whileTap={{ scale: 0.95 }}
+                          >
                             <Button
                               type="primary"
                               htmlType="submit"
                               loading={loading}
+                              // eslint-disable-next-line max-len
                               className="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 rounded-lg"
                             >
-                              {loading ? "Завантаження..." : "Увійти"}
+                              {loading ? 'Завантаження...' : 'Увійти'}
                             </Button>
                           </motion.div>
                         </Form.Item>

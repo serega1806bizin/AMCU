@@ -55,12 +55,12 @@ export const List_pars = ({ onChange, fieldName }) => {
 
   return (
     <Form.Item
-      label="Список пар"
+      label="Список"
       name={fieldName}
       rules={[{ required: true, message: 'Заповніть список пар чисел' }]}
     >
       <Card title="Список пар чисел" style={{ marginTop: 20 }}>
-        <Divider>Додайте очікувані пари в переліку</Divider>
+        <Divider>Додайте очікувані пари</Divider>
         <Space direction="vertical" style={{ width: '100%' }} size="middle">
           {pairs.map(pair => (
             <Space

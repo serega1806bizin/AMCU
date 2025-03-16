@@ -60,7 +60,7 @@ export const List_pars = ({ question, onChange, index1 }) => {
         rules={[{ required: true, message: 'Заповніть список пар чисел' }]}
       >
         <Card title="Список пар чисел" style={{ marginTop: 20 }}>
-          <Divider>Додайте очікувані пари в переліку</Divider>
+          <Divider>Додайте пари</Divider>
           <Space direction="vertical" style={{ width: '100%' }} size="middle">
             {pairs.map(pair => (
               <Space

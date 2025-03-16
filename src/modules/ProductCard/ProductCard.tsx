@@ -39,14 +39,14 @@ export const TaskCard: React.FC<Props> = ({ task }) => {
       </main>
 
       <footer className={styles.productCard__footer}>
-        <button className={classNames(styles.productCard__addToCart)}>
-          <Link
-            className={styles.productCard__addToCart}
-            to={`/${task.type}/${task.id}`}
-          >
+        <Link
+          className={styles.productCard__addToCart}
+          to={`/${task.type}/${task.id}`}
+        >
+          <button className={classNames(styles.productCard__addToCart)}>
             Переглянути роботи
-          </Link>
-        </button>
+          </button>
+        </Link>
       </footer>
     </div>
   );

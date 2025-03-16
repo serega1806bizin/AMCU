@@ -64,7 +64,7 @@ export const DetailsTask = () => {
       setStudentWorks(formattedData);
       setFilteredData(formattedData);
     } catch (error) {
-      console.error('Ошибка загрузки данных:', error);
+      console.error('Помилка завантаження даних:', error);
     } finally {
       setIsLoading(false);
     }
@@ -109,14 +109,19 @@ export const DetailsTask = () => {
         key: 'action',
         render: (_, record) => (
           <Space size="middle">
-            <a onClick={() => console.log('Переглянути', record)}>
+            <Button
+              type="link"
+              onClick={() =>
+                navigate(`/answer/${record['id-answer']}/test/${taskId}`)
+              }
+            >
               Переглянути
-            </a>
+            </Button>
           </Space>
         ),
       },
     ],
-    [],
+    [navigate, taskId],
   );
 
   // Обработчик поиска
@@ -144,7 +149,7 @@ export const DetailsTask = () => {
       window.SpeechRecognition || window.webkitSpeechRecognition;
 
     if (!SpeechRecognition) {
-      alert('Ваш браузер не поддерживает голосовой ввод!');
+      alert('Ваш браузер не підтримує голосовий ввід!');
 
       return;
     }
@@ -157,13 +162,13 @@ export const DetailsTask = () => {
     recognition.onresult = event => {
       const transcript = event.results[0][0].transcript.trim();
 
-      console.log(`🎙 Распознанный текст: ${transcript}`);
+      console.log(`🎙 Розпізнаний текст: ${transcript}`);
       setSearchValue(transcript);
       onSearch(transcript);
     };
 
     recognition.onerror = event => {
-      console.error('Ошибка распознавания:', event.error);
+      console.error('Помилка розпізнавання:', event.error);
     };
 
     recognition.start();
@@ -174,9 +179,9 @@ export const DetailsTask = () => {
   const copyUrl = useCallback(async () => {
     try {
       await navigator.clipboard.writeText(url);
-      message.success('Ссылка скопирована!');
+      message.success('Покликання скопійовано!');
     } catch (error) {
-      message.error('Ошибка при копировании');
+      message.error('Помилка при копіюванні');
     }
   }, [url]);
 
@@ -232,7 +237,7 @@ export const DetailsTask = () => {
             </section>
 
             <div className={styles.contentWrapper}>
-              <p>Посилання на тест:</p>
+              <p>Покликання на тест:</p>
               <div className={styles.linkWrapper}>
                 <Link to={`/test/${taskId}`}>{url}</Link>
                 <Tooltip title="Скопіювати">

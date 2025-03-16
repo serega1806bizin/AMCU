@@ -73,7 +73,7 @@ export const Variants_q = ({ onChange, fieldName }) => {
 
   return (
     <Form.Item
-      label="Варіанти відповіді"
+      label="Варіанти"
       name={fieldName}
       rules={[{ required: true, message: 'Виберіть правильний варіант' }]}
     >

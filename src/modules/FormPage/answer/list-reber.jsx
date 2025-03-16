@@ -54,6 +54,8 @@ export const List_reber = ({ question, onChange, index1 }) => {
       <Paragraph>{question.text}</Paragraph>
       <QuestionImages images={question.Images} />
       <Form.Item
+        labelCol={{ span: 24 }}
+        wrapperCol={{ span: 24 }}
         label="Список:"
         name={`list_reber_${question.id}`}
         rules={[{ required: true, message: 'Заповніть список ребер' }]}

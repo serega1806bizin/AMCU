@@ -117,19 +117,19 @@ export const ConstructorPage = () => {
 
   return (
     <Row justify="center" style={{ padding: 10 }}>
-      <div className={styles.productDetails__back}>
-        <button
-          className={styles.productDetails__backArrow}
-          onClick={handleBackButton}
-        />
-        <button
-          className={styles.productDetails__backText}
-          onClick={handleBackButton}
-        >
-          Назад
-        </button>
-      </div>
       <Col xs={24} sm={20} md={16} lg={12} xl={10}>
+        <div className={styles.productDetails__back}>
+          <button
+            className={styles.productDetails__backArrow}
+            onClick={handleBackButton}
+          />
+          <button
+            className={styles.productDetails__backText}
+            onClick={handleBackButton}
+          >
+            Назад
+          </button>
+        </div>
         <h1>Створення тесту</h1>
         <Form
           form={form}

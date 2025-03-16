@@ -7,6 +7,7 @@ import { ConstructorPage } from './modules/ConstructorPage';
 import { FormPage } from './modules/FormPage/FromPage';
 import { DetailsTask } from './modules/DetailsTask';
 import { EditPage } from './modules/EditPage';
+import { AnswerPage } from './modules/AnswerPage';
 
 export const Root = () => (
   <Router>
@@ -24,6 +25,9 @@ export const Root = () => (
           </Route>
           <Route path="test">
             <Route path=":testId" element={<FormPage />} />
+          </Route>
+          <Route path="answer">
+            <Route path=":answerId/test/:testId" element={<AnswerPage />} />
           </Route>
           <Route path="*" element={<NotFoundPage />} />
         </Route>

@@ -52,8 +52,10 @@ export const List_reber = ({ onChange, fieldName }) => {
       label="Список:"
       name={fieldName}
       rules={[{ required: true, message: 'Заповніть список ребер' }]}
+      labelCol={{ span: 24 }}
+      wrapperCol={{ span: 24 }}
     >
-      <Card style={{ marginTop: 20 }}>
+      <Card style={{ marginTop: 20, width: 400 }}>
         <Divider>Додайте очікувані вузли</Divider>
         <Space direction="vertical" style={{ width: '100%' }} size="middle">
           {nodes.map(node => (
@@ -71,7 +73,7 @@ export const List_reber = ({ onChange, fieldName }) => {
                 textAlign: 'center', // Центрируем текст внутри
               }}
             >
-              <Text style={{ minWidth: 70 }}>
+              <Text style={{ minWidth: 70, marginRight: 10 }}>
                 U<sub>{node.id}</sub> | (X
               </Text>
 

@@ -127,7 +127,7 @@ export const ProductPage = () => {
             filteredTasks.map(task => <TaskCard task={task} key={task.id} />)
           ) : (
             <span className={styles.productPage__productCardsError}>
-              {`Ви ще не створили тестів`}
+              {`Робіт не знайдено`}
             </span>
           )}
         </div>
