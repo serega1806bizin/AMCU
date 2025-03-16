@@ -6,7 +6,8 @@ import { useContext, useEffect, useState } from 'react';
 import { Menu } from './components/Menu';
 import { Footer } from './components/Footer';
 import { StateContext } from './Store/Store';
-import { Button, Col, Form, FormProps, Input, message, Row } from 'antd';
+import { Button, Col, Form, Input, message, Row } from 'antd';
+import { motion } from 'framer-motion';
 
 type FieldType = {
   username?: string;
@@ -17,11 +18,14 @@ export const App = () => {
   const { isMenuVisible } = useContext(StateContext);
   const location = useLocation();
   const navigate = useNavigate();
+  const [loading, setLoading] = useState(false);
+  const [isAuth, setIsAuth] = useState(false);
 
   const isTestRoute = location.pathname.startsWith('/test');
   const isLoginRoute = location.pathname === '/';
-
-  const [isAuth, setIsAuth] = useState(false);
+  const isProtectedRoute =
+    location.pathname.startsWith('/task') ||
+    location.pathname.startsWith('/create');
 
   useEffect(() => {
     const storedAuth = localStorage.getItem('authData');
@@ -41,13 +45,9 @@ export const App = () => {
     }
   }, []);
 
-  const isProtectedRoute =
-    location.pathname.startsWith('/task') ||
-    location.pathname.startsWith('/create');
-
   useEffect(() => {
     if (!isAuth && isProtectedRoute) {
-      message.warning('Cперш відійдіть');
+      message.warning('Спершу увійдіть');
     }
   }, [isAuth, isProtectedRoute]);
 
@@ -59,25 +59,28 @@ export const App = () => {
     return <Navigate to="/task" replace />;
   }
 
-  const onFinishFailed: FormProps<FieldType>['onFinishFailed'] = errorInfo => {
-    // eslint-disable-next-line no-console
-    console.log('Failed:', errorInfo);
-  };
+  const onFinish = (values: FieldType) => {
+    setLoading(true);
+    setTimeout(() => {
+      if (
+        values.username === 'Викладач-2025-математика' &&
+        values.password === 'Цей пароль ніколи не розгадають'
+      ) {
+        const expiration = Date.now() + 7 * 24 * 60 * 60 * 1000;
 
-  const onFinish: FormProps<FieldType>['onFinish'] = values => {
-    if (
-      values.username === 'Викладач-2025-математика' &&
-      values.password === 'Цей пароль ніколи не розгадають'
-    ) {
-      const expiration = Date.now() + 7 * 24 * 60 * 60 * 1000;
+        localStorage.setItem(
+          'authData',
+          JSON.stringify({ expires: expiration }),
+        );
+        setIsAuth(true);
+        message.success('Успішний вхід');
+        navigate('/task');
+      } else {
+        message.error('Невірні учетні дані');
+      }
 
-      localStorage.setItem('authData', JSON.stringify({ expires: expiration }));
-      setIsAuth(true);
-      message.success('Успішний вхід');
-      navigate('/task');
-    } else {
-      message.error('Невірні учетні дані');
-    }
+      setLoading(false);
+    }, 2000);
   };
 
   return (
@@ -90,7 +93,10 @@ export const App = () => {
           <main className="main">
             <Outlet />
             {isLoginRoute && !isAuth && (
-              <div
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 0.6 }}
                 style={{
                   display: 'flex',
                   justifyContent: 'center',
@@ -100,51 +106,47 @@ export const App = () => {
               >
                 <Row justify="center" style={{ width: '100%', padding: 10 }}>
                   <Col xs={24} sm={20} md={16} lg={12} xl={10}>
-                    <Form
-                      name="basic"
-                      labelCol={{ span: 8 }}
-                      wrapperCol={{ span: 16 }}
-                      style={{ maxWidth: 600 }}
-                      initialValues={{ remember: true }}
-                      onFinish={onFinish}
-                      onFinishFailed={onFinishFailed}
-                      autoComplete="off"
+                    <motion.div
+                      className="bg-white p-6 rounded-2xl shadow-xl w-full max-w-sm"
+                      initial={{ scale: 0.9 }}
+                      animate={{ scale: 1 }}
+                      transition={{ duration: 0.3 }}
                     >
-                      <Form.Item<FieldType>
-                        label="Ім'я користувача"
-                        name="username"
-                        rules={[
-                          {
-                            required: true,
-                            message: "Введіть ім'я користувача!",
-                          },
-                        ]}
-                      >
-                        <Input />
-                      </Form.Item>
+                      <h2 className="text-2xl font-semibold text-center mb-4">Вхід</h2>
+                      <Form name="basic" layout="vertical" onFinish={onFinish}>
+                        <Form.Item
+                          label="Ім'я користувача"
+                          name="username"
+                          rules={[{ required: true, message: "Введіть ім'я користувача!" }]}
+                        >
+                          <Input placeholder="Введіть ім'я" className="rounded-lg p-2 text-lg" />
+                        </Form.Item>
 
-                      <Form.Item<FieldType>
-                        label="Пароль"
-                        name="password"
-                        rules={[{ required: true, message: 'Введіть пароль!' }]}
-                      >
-                        <Input.Password />
-                      </Form.Item>
-                      <Form.Item wrapperCol={{ span: 24 }}>
-                        <Row justify="center">
-                          <Button
-                            type="primary"
-                            htmlType="submit"
-                            style={{ width: '100%', maxWidth: 400 }}
-                          >
-                            Увійти
-                          </Button>
-                        </Row>
-                      </Form.Item>
-                    </Form>
+                        <Form.Item
+                          label="Пароль"
+                          name="password"
+                          rules={[{ required: true, message: "Введіть пароль!" }]}
+                        >
+                          <Input.Password placeholder="••••••••" className="rounded-lg p-2 text-lg" />
+                        </Form.Item>
+
+                        <Form.Item>
+                          <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+                            <Button
+                              type="primary"
+                              htmlType="submit"
+                              loading={loading}
+                              className="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 rounded-lg"
+                            >
+                              {loading ? "Завантаження..." : "Увійти"}
+                            </Button>
+                          </motion.div>
+                        </Form.Item>
+                      </Form>
+                    </motion.div>
                   </Col>
                 </Row>
-              </div>
+              </motion.div>
             )}
           </main>
           <Footer />
