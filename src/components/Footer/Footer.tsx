@@ -24,6 +24,13 @@ export const Footer = () => {
           >
             замовити сайт
           </Link>
+          <Link
+            to="https://t.me/nnngggiiii"
+            target="_blank"
+            className={styles.footer__link}
+          >
+            Рішення для вашого бізнесу
+          </Link>
         </div>
         <div className={styles.footer__backToTop}>
           <button

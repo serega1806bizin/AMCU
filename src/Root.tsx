@@ -6,6 +6,7 @@ import { NotFoundPage } from './components/NotFoundPage';
 import { ConstructorPage } from './modules/ConstructorPage';
 import { FormPage } from './modules/FormPage/FromPage';
 import { DetailsTask } from './modules/DetailsTask';
+import { EditPage } from './modules/EditPage';
 
 export const Root = () => (
   <Router>
@@ -14,7 +15,9 @@ export const Root = () => (
         <Route path="/" element={<App />}>
           <Route path="task">
             <Route index element={<ProductPage />} />
-            <Route path=":taskId" element={<DetailsTask />} />
+            <Route path=":taskId" element={<DetailsTask />}>
+              <Route path="edit" element={<EditPage />} />
+            </Route>
           </Route>
           <Route path="create">
             <Route index element={<ConstructorPage />} />

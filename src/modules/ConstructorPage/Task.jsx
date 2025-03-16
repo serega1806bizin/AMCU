@@ -1,4 +1,3 @@
-// eslint-disable-next-line import/no-extraneous-dependencies
 import {
   Button,
   Card,
@@ -20,12 +19,36 @@ import { List_reber } from './answer/list-reber';
 import { List_num } from './answer/list-num';
 import axios from 'axios';
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-export const TaskItem = ({ id, onDelete, onPointsChange, onUpdate, index }) => {
-  const [selectedType, setSelectedType] = useState('text');
-  const [additionalData, setAdditionalData] = useState({});
-  const [is2Checked, setIs2Checked] = useState(false);
-  const [fileList, setFileList] = useState([]);
+export const TaskItem = ({
+  id,
+  initialData = {},
+  onDelete,
+  onUpdate,
+  index,
+}) => {
+  const [selectedType, setSelectedType] = useState(initialData.type || 'text');
+  const [additionalData, setAdditionalData] = useState({
+    points: initialData.points || 0,
+    text: initialData.text || '',
+    answer: initialData.answer || null,
+    Images: initialData.Images || [],
+  });
+  const [is2Checked, setIs2Checked] = useState(
+    initialData.Images && initialData.Images.length > 0,
+  );
+  // Инициализация fileList из initialData.Images, если они есть
+  const [fileList, setFileList] = useState(() => {
+    if (initialData.Images && initialData.Images.length > 0) {
+      return initialData.Images.map((url, idx) => ({
+        uid: `-initial-${idx}`,
+        name: `image-${idx}.png`,
+        status: 'done',
+        url: url,
+      }));
+    }
+
+    return [];
+  });
   const [previewOpen, setPreviewOpen] = useState(false);
   const [previewImage, setPreviewImage] = useState('');
 
@@ -33,13 +56,10 @@ export const TaskItem = ({ id, onDelete, onPointsChange, onUpdate, index }) => {
     if (typeof onUpdate === 'function') {
       onUpdate(id, {
         type: selectedType,
-        points: additionalData.points || 0,
-        text: additionalData.text || '',
-        answer: additionalData.answer || null,
         ...additionalData,
       });
     }
-  }, [selectedType, additionalData]);
+  }, [selectedType, additionalData, id, onUpdate]);
 
   const onCheckbox2Change = e => {
     setIs2Checked(e.target.checked);
@@ -47,14 +67,13 @@ export const TaskItem = ({ id, onDelete, onPointsChange, onUpdate, index }) => {
       setFileList([]);
       setPreviewImage('');
       setPreviewOpen(false);
+      setAdditionalData(prev => ({ ...prev, Images: [] }));
     }
   };
 
   // eslint-disable-next-line @typescript-eslint/no-shadow
   const handleChange = ({ fileList }) => {
     setFileList(fileList);
-    // eslint-disable-next-line no-console
-    console.log(fileList);
   };
 
   const handlePreview = async file => {
@@ -140,6 +159,7 @@ export const TaskItem = ({ id, onDelete, onPointsChange, onUpdate, index }) => {
         name={`Тип завдання_${id}`}
         labelCol={{ span: 4.5 }}
         rules={[{ required: true, message: 'Будь-ласка оберіть тип' }]}
+        initialValue={initialData.type || 'text'}
       >
         <Select
           placeholder="Оберіть тип завдання"
@@ -161,6 +181,7 @@ export const TaskItem = ({ id, onDelete, onPointsChange, onUpdate, index }) => {
         rules={[
           { required: true, message: 'Будь-ласка, вкажіть кількість балів' },
         ]}
+        initialValue={initialData.points || 0}
       >
         <InputNumber
           onChange={value =>
@@ -175,6 +196,7 @@ export const TaskItem = ({ id, onDelete, onPointsChange, onUpdate, index }) => {
         rules={[
           { required: true, message: 'Будь-ласка введіть текст питання' },
         ]}
+        initialValue={initialData.text || ''}
       >
         <Input
           onChange={e =>
@@ -182,7 +204,11 @@ export const TaskItem = ({ id, onDelete, onPointsChange, onUpdate, index }) => {
           }
         />
       </Form.Item>
-      <Form.Item name={`checkbox2_${id}`} valuePropName="checked">
+      <Form.Item
+        name={`checkbox2_${id}`}
+        valuePropName="checked"
+        initialValue={is2Checked}
+      >
         <Checkbox onChange={onCheckbox2Change}>
           Додати фото до завдання
         </Checkbox>
@@ -190,44 +216,26 @@ export const TaskItem = ({ id, onDelete, onPointsChange, onUpdate, index }) => {
       {is2Checked && (
         <>
           <Upload
-            // eslint-disable-next-line @typescript-eslint/no-unused-vars
             customRequest={async ({ file, onSuccess, onError }) => {
               try {
-                // Подготовим FormData
                 const formData = new FormData();
 
-                // questionId – это id вопроса, который вы передаёте в TaskItem
                 formData.append('questionId', id);
-                // "images" – это имя поля, которое сервер ждёт в upload.array('images', 8)
                 formData.append('images', file);
-
-                // Отправляем POST-запрос на сервер
                 const response = await axios.post(
                   'https://stradanie-production-f14d.up.railway.app/upload',
                   formData,
-                  {
-                    headers: {
-                      'Content-Type': 'multipart/form-data',
-                    },
-                  },
+                  { headers: { 'Content-Type': 'multipart/form-data' } },
                 );
 
-                // Предположим, сервер возвращает { urls: [ ... ] }
                 onSuccess(response.data, file);
-
-                // Сохраняем полученные ссылки в additionalData,
-                // чтобы при сохранении вопроса они попали в поле Images
                 const { urls } = response.data;
 
-                // Если вы хотите хранить все ссылки в массиве Images,
-                // можно объединять их с предыдущими, чтобы поддерживать мультизагрузку
                 setAdditionalData(prev => ({
                   ...prev,
                   Images: [...(prev.Images || []), ...urls],
                 }));
               } catch (error) {
-                // eslint-disable-next-line no-console
-                console.error('Ошибка загрузки:', error);
                 onError(error);
               }
             }}
@@ -235,10 +243,26 @@ export const TaskItem = ({ id, onDelete, onPointsChange, onUpdate, index }) => {
             fileList={fileList}
             onChange={handleChange}
             onPreview={handlePreview}
+            onRemove={file => {
+              // Обновляем fileList, убирая удалённый файл
+              const newFileList = fileList.filter(
+                item => item.uid !== file.uid,
+              );
+
+              setFileList(newFileList);
+              // Если файл имеет URL, убираем его из Images
+              if (file.url) {
+                setAdditionalData(prev => ({
+                  ...prev,
+                  Images: (prev.Images || []).filter(url => url !== file.url),
+                }));
+              }
+            }}
             accept="image/*"
           >
             {fileList.length >= 8 ? null : uploadButton}
           </Upload>
+
           {previewImage && (
             <Image
               style={{ display: 'none' }}
@@ -253,16 +277,12 @@ export const TaskItem = ({ id, onDelete, onPointsChange, onUpdate, index }) => {
       )}
       {renderComponent()}
       <Form.Item style={{ marginTop: 10 }}>
-        <Button
-          onClick={onDelete}
-          style={{
-            color: 'red',
-            borderColor: 'red',
-          }}
-        >
+        <Button onClick={onDelete} style={{ color: 'red', borderColor: 'red' }}>
           Видалити це завдання
         </Button>
       </Form.Item>
     </Card>
   );
 };
+
+export default TaskItem;
