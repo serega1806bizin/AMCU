@@ -131,13 +131,15 @@ export const App = () => {
                         <Input.Password />
                       </Form.Item>
                       <Form.Item wrapperCol={{ span: 24 }}>
-                        <Button
-                          type="primary"
-                          htmlType="submit"
-                          style={{ width: '100%' }}
-                        >
-                          Увійти
-                        </Button>
+                        <Row justify="center">
+                          <Button
+                            type="primary"
+                            htmlType="submit"
+                            style={{ width: '100%', maxWidth: 400 }}
+                          >
+                            Увійти
+                          </Button>
+                        </Row>
                       </Form.Item>
                     </Form>
                   </Col>
