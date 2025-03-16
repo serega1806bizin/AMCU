@@ -41,14 +41,12 @@ export const Header = () => {
     return () => window.removeEventListener('resize', handleResize);
   }, [dispatch, isMenuVisible, wasMenuOpen]);
 
-  // Объект для отображения имен ссылок
   const navLabels: Record<string, string> = {
     task: 'роботи',
     create: 'Створити роботу',
   };
 
   const handleLogout = () => {
-    // Пример очистки сессионных данных:
     localStorage.removeItem('authData'); // или другой ключ, используемый для сессии
     message.success('Вихід з системи успішно виконано!');
     window.location.reload();

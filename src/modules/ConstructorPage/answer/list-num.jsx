@@ -19,10 +19,9 @@ const { Text } = Typography;
 
 // eslint-disable-next-line @typescript-eslint/naming-convention
 export const List_num = ({ onChange, fieldName }) => {
-  const [items, setItems] = useState([1, 2]); // Массив чисел
-  const [isOrderImportant, setIsOrderImportant] = useState(false); // Флаг "порядок важливий"
+  const [items, setItems] = useState([1, 2]);
+  const [isOrderImportant, setIsOrderImportant] = useState(false);
 
-  // Передача данных наверх при изменении `items` или `isOrderImportant`
   useEffect(() => {
     onChange({
       answer: {
@@ -32,25 +31,22 @@ export const List_num = ({ onChange, fieldName }) => {
     });
   }, [items, isOrderImportant, onChange]);
 
-  // Добавить новый элемент
   const addItem = () => {
     setItems([...items, 0]);
   };
 
-  // Удалить элемент из массива
   const removeItem = index => {
     if (items.length === 1) {
-      return; // Не удаляем, если остался один элемент
+      return;
     }
 
     setItems(items.filter((_, i) => i !== index));
   };
 
-  // Обновить значение элемента в массиве
   const updateItem = (index, value) => {
     const updatedItems = [...items];
 
-    updatedItems[index] = Number(value) || 0; // Обновляем значение (0 если пустое)
+    updatedItems[index] = Number(value) || 0;
     setItems(updatedItems);
   };
 
@@ -90,7 +86,7 @@ export const List_num = ({ onChange, fieldName }) => {
                 style={{
                   width: 50,
                   height: 50,
-                  marginBottom: 5, // Отступ снизу для кнопки удаления
+                  marginBottom: 5,
                 }}
               />
               <Button
@@ -98,7 +94,7 @@ export const List_num = ({ onChange, fieldName }) => {
                 icon={<DeleteOutlined />}
                 danger
                 onClick={() => removeItem(index)}
-                disabled={items.length === 1} // Запрещаем удалять последний элемент
+                disabled={items.length === 1}
                 style={{
                   padding: 0,
                   height: 20,

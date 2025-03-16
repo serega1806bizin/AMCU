@@ -3,7 +3,6 @@ import { Card, Checkbox, Input, Space, Tooltip } from 'antd';
 
 // eslint-disable-next-line @typescript-eslint/naming-convention
 export const Variants_q = ({ Corr, Ans }) => {
-  // Если Corr не передан или некорректен, ничего не отображаем
   if (
     !Corr ||
     !Corr.variants ||
@@ -41,7 +40,6 @@ export const Variants_q = ({ Corr, Ans }) => {
               ? '#f6ffed'
               : '#fff';
 
-          // Галочка: если Ans передан – отображаем ответ студента, иначе значение из Corr
           const checkboxChecked = Ans ? option.student : option.expected;
 
           return (

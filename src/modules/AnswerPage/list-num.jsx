@@ -17,12 +17,10 @@ export const ListNum = ({ Ans, Corr }) => {
 
           if (Corr.massiv) {
             if (Corr.consistencyImportant) {
-              // Если порядок важен — сравниваем по индексам
               if (num !== Corr.massiv[index]) {
                 bgColor = '#ffebeb';
               }
             } else {
-              // Если порядок не важен — проверяем, есть ли число в массиве корректных ответов
               if (!Corr.massiv.includes(num)) {
                 bgColor = '#ffebeb';
               }

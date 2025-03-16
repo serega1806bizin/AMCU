@@ -23,8 +23,8 @@ function pairsEqual(pair1, pair2) {
 export const AnswerPage = () => {
   const { answerId, testId } = useParams();
   const [isLoading, setIsLoading] = useState(true);
-  const [test, setTest] = useState();
-  const [answer, setAnswer] = useState();
+  const [test, setTest] = useState(null);
+  const [answer, setAnswer] = useState(null);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -52,6 +52,203 @@ export const AnswerPage = () => {
 
     fetchData();
   }, [answerId, testId]);
+
+  const getColor = correctness => {
+    switch (correctness) {
+      case 'full':
+        return 'green';
+      case 'partial':
+        return 'orange';
+      default:
+        return 'red';
+    }
+  };
+
+  const computeCorrectness = (question, studentAns) => {
+    const correctAns = question.answer;
+    let correctness = 'none';
+
+    switch (question.type) {
+      case 'text':
+        correctness =
+          studentAns?.trim().toLowerCase() === correctAns?.trim().toLowerCase()
+            ? 'full'
+            : 'none';
+        break;
+      case 'number':
+        correctness =
+          Number(studentAns) === Number(correctAns) ? 'full' : 'none';
+        break;
+      case 'list-num': {
+        const correctList = correctAns.massiv;
+
+        if (correctAns.consistencyImportant) {
+          let count = 0;
+
+          for (let i = 0; i < correctList.length; i++) {
+            if (studentAns && studentAns[i] === correctList[i]) {
+              count++;
+            }
+          }
+
+          correctness =
+            count === correctList.length
+              ? 'full'
+              : count > 0
+                ? 'partial'
+                : 'none';
+        } else {
+          const correctSet = new Set(correctList);
+          const studentSet = new Set(studentAns);
+          let count = 0;
+
+          studentSet.forEach(num => {
+            if (correctSet.has(num)) {
+              count++;
+            }
+          });
+          correctness =
+            count === correctSet.size && studentSet.size === correctSet.size
+              ? 'full'
+              : count > 0
+                ? 'partial'
+                : 'none';
+        }
+
+        break;
+      }
+
+      case 'matrix': {
+        const studentMatrix = studentAns.answer;
+        const correctMatrix = correctAns;
+        let total = 0;
+        let count = 0;
+
+        for (let i = 0; i < correctMatrix.length; i++) {
+          for (let j = 0; j < correctMatrix[i].length; j++) {
+            total++;
+            if (
+              Number(studentMatrix?.[i]?.[j]) === Number(correctMatrix[i][j])
+            ) {
+              count++;
+            }
+          }
+        }
+
+        correctness = count === total ? 'full' : count > 0 ? 'partial' : 'none';
+        break;
+      }
+
+      case 'variants': {
+        let count = 0;
+
+        for (let i = 0; i < studentAns.length; i++) {
+          if (studentAns[i] === correctAns.correct[i]) {
+            count++;
+          }
+        }
+
+        correctness =
+          count === studentAns.length ? 'full' : count > 0 ? 'partial' : 'none';
+        break;
+      }
+
+      case 'list-pars': {
+        const correctPairs = correctAns.pairs.map(pair => JSON.stringify(pair));
+        const studentPairs = studentAns.answer.map(pair =>
+          JSON.stringify(pair),
+        );
+        const count = studentPairs.filter(pair =>
+          correctPairs.includes(pair),
+        ).length;
+
+        correctness =
+          count === correctPairs.length &&
+          studentPairs.length === correctPairs.length
+            ? 'full'
+            : count > 0
+              ? 'partial'
+              : 'none';
+        break;
+      }
+
+      case 'list-reber': {
+        let correctCount = 0;
+
+        for (const correctEdge of correctAns) {
+          const found = studentAns.answer.some(studentEdge =>
+            pairsEqual(correctEdge, studentEdge),
+          );
+
+          if (found) {
+            correctCount++;
+          }
+        }
+
+        correctness =
+          correctCount === correctAns.length &&
+          studentAns.answer.length === correctAns.length
+            ? 'full'
+            : correctCount > 0
+              ? 'partial'
+              : 'none';
+        break;
+      }
+
+      default:
+        // eslint-disable-next-line no-console
+        console.warn(`⚠️ Невідомий тип питання: ${question.type}`);
+    }
+
+    return correctness;
+  };
+
+  const renderStudentAnswer = (
+    question,
+    studentAns,
+    correctAns,
+    correctness,
+  ) => {
+    switch (question.type) {
+      case 'text':
+      case 'number':
+        return (
+          <span style={{ color: getColor(correctness) }}>{studentAns}</span>
+        );
+      case 'list-num':
+        return <ListNum Corr={correctAns} Ans={studentAns} />;
+      case 'matrix':
+        return <Matrix Ans={studentAns.answer} Corr={correctAns} />;
+      case 'variants':
+        return <Variants_q Ans={studentAns} Corr={correctAns} />;
+      case 'list-pars':
+        return <List_pars pairs={studentAns.answer} />;
+      case 'list-reber':
+        return <List_reber Corr={correctAns} Ans={studentAns} />;
+      default:
+        return null;
+    }
+  };
+
+  const renderCorrectAnswer = (question, correctAns) => {
+    switch (question.type) {
+      case 'text':
+      case 'number':
+        return JSON.stringify(correctAns);
+      case 'list-num':
+        return <ListNum Ans={correctAns.massiv} />;
+      case 'matrix':
+        return <Matrix Corr={correctAns} />;
+      case 'variants':
+        return <Variants_q Corr={correctAns} />;
+      case 'list-pars':
+        return <List_pars pairs={correctAns.pairs} />;
+      case 'list-reber':
+        return <List_reber Corr={correctAns} />;
+      default:
+        return null;
+    }
+  };
 
   if (isLoading) {
     return <Loader />;
@@ -85,196 +282,20 @@ export const AnswerPage = () => {
         </p>
         <Divider>Детальніше</Divider>
 
-        {/* Список питань та відповідей */}
         <div>
           {test?.questions.map(question => {
             const studentAnswer = answer?.answers.find(
               ans => Number(ans['question-id']) === Number(question.id),
             );
             const studentAns = studentAnswer?.answer;
-            // Правильний варіант може бути в різних форматах:
             const correctAns = question.answer;
-
-            let correctness = 'none'; // 'full' | 'partial' | 'none'
-
-            switch (question.type) {
-              case 'text':
-                correctness =
-                  studentAns?.trim().toLowerCase() ===
-                  correctAns?.trim().toLowerCase()
-                    ? 'full'
-                    : 'none';
-                break;
-
-              case 'number':
-                correctness =
-                  Number(studentAns) === Number(correctAns) ? 'full' : 'none';
-                break;
-
-              case 'list-num':
-                const correctList = correctAns.massiv;
-
-                if (correctAns.consistencyImportant) {
-                  // Проверяем по позициям
-                  let count = 0;
-
-                  for (let i = 0; i < correctList.length; i++) {
-                    if (studentAns && studentAns[i] === correctList[i]) {
-                      count++;
-                    }
-                  }
-
-                  if (count === correctList.length) {
-                    correctness = 'full';
-                  } else if (count > 0) {
-                    correctness = 'partial';
-                  } else {
-                    correctness = 'none';
-                  }
-                } else {
-                  // Если порядок не важен
-                  const correctSet = new Set(correctList);
-
-                  const studentSet = new Set(studentAns);
-                  let count = 0;
-
-                  studentSet.forEach(num => {
-                    if (correctSet.has(num)) {
-                      count++;
-                    }
-                  });
-                  if (
-                    count === correctSet.size &&
-                    studentSet.size === correctSet.size
-                  ) {
-                    correctness = 'full';
-                  } else if (count > 0) {
-                    correctness = 'partial';
-                  } else {
-                    correctness = 'none';
-                  }
-                }
-
-                break;
-
-              case 'matrix': {
-                const studentMatrix = studentAns.answer;
-                const correctMatrix = correctAns;
-                let total = 0;
-                let count = 0;
-
-                for (let i = 0; i < correctMatrix.length; i++) {
-                  for (let j = 0; j < correctMatrix[i].length; j++) {
-                    total++;
-                    if (
-                      Number(studentMatrix?.[i]?.[j]) ===
-                      Number(correctMatrix[i][j])
-                    ) {
-                      count++;
-                    }
-                  }
-                }
-
-                if (count === total) {
-                  correctness = 'full';
-                } else if (count > 0) {
-                  correctness = 'partial';
-                } else {
-                  correctness = 'none';
-                }
-
-                break;
-              }
-
-              case 'variants': {
-                // Здесь studentAns и correctAns.correct — массивы одного размера
-                let count = 0;
-
-                for (let i = 0; i < studentAns.length; i++) {
-                  if (studentAns[i] === correctAns.correct[i]) {
-                    count++;
-                  }
-                }
-
-                if (count === studentAns.length) {
-                  correctness = 'full';
-                } else if (count > 0) {
-                  correctness = 'partial';
-                } else {
-                  correctness = 'none';
-                }
-
-                break;
-              }
-
-              case 'list-pars': {
-                const correctPairs = correctAns.pairs.map(pair =>
-                  JSON.stringify(pair),
-                );
-                const studentPairs = studentAns.answer.map(pair =>
-                  JSON.stringify(pair),
-                );
-                const count = studentPairs.filter(pair =>
-                  correctPairs.includes(pair),
-                ).length;
-
-                if (
-                  count === correctPairs.length &&
-                  studentPairs.length === correctPairs.length
-                ) {
-                  correctness = 'full';
-                } else if (count > 0) {
-                  correctness = 'partial';
-                } else {
-                  correctness = 'none';
-                }
-
-                break;
-              }
-
-              case 'list-reber': {
-                let correctCount = 0;
-
-                // Здесь correctAns – это массив правильных пар,
-                // а studentAns.answer – массив ответов студента
-                for (const correctEdge of correctAns) {
-                  // eslint-disable-next-line @typescript-eslint/no-loop-func
-                  const found = studentAns.answer.some(studentEdge =>
-                    pairsEqual(correctEdge, studentEdge),
-                  );
-
-                  if (found) {
-                    correctCount++;
-                  }
-                }
-
-                if (
-                  correctCount === correctAns.length &&
-                  studentAns.answer.length === correctAns.length
-                ) {
-                  correctness = 'full';
-                } else if (correctCount > 0) {
-                  correctness = 'partial';
-                } else {
-                  correctness = 'none';
-                }
-
-                break;
-              }
-
-              default:
-                // eslint-disable-next-line no-console
-                console.warn(`⚠️ Невідомий тип питання: ${question.type}`);
-            }
-
-            // Определяем цвет подсветки:
-            let bgColor = '#ffebeb'; // за замовчуванням – помилка (червоний)
-
-            if (correctness === 'full') {
-              bgColor = '#e6ffed'; // зелений для повністю правильного
-            } else if (correctness === 'partial') {
-              bgColor = '#ffffcc'; // жовтий для частково правильного
-            }
+            const correctness = computeCorrectness(question, studentAns);
+            const bgColor =
+              correctness === 'full'
+                ? '#e6ffed'
+                : correctness === 'partial'
+                  ? '#ffffcc'
+                  : '#ffebeb';
 
             return (
               <div
@@ -291,58 +312,17 @@ export const AnswerPage = () => {
                 </p>
                 <p>
                   <strong>Відповідь студента:</strong>{' '}
-                  {question.type === 'text' || question.type === 'number' ? (
-                    <span
-                      style={{
-                        color:
-                          correctness === 'none'
-                            ? 'red'
-                            : correctness === 'full'
-                              ? 'green'
-                              : 'orange',
-                      }}
-                    >
-                      {studentAns}
-                    </span>
-                  ) : null}
-                  {question.type === 'list-num' ? (
-                    <ListNum Corr={correctAns} Ans={studentAns} />
-                  ) : null}
-                  {question.type === 'matrix' ? (
-                    <Matrix Ans={studentAns.answer} Corr={correctAns} />
-                  ) : null}
-                  {question.type === 'variants' ? (
-                    <Variants_q Ans={studentAns} Corr={correctAns} />
-                  ) : null}
-                  {question.type === 'list-pars' ? (
-                    <List_pars pairs={studentAns.answer} />
-                  ) : null}
-                  {question.type === 'list-reber' ? (
-                    <List_reber Corr={correctAns} Ans={studentAns} />
-                  ) : null}
+                  {renderStudentAnswer(
+                    question,
+                    studentAns,
+                    correctAns,
+                    correctness,
+                  )}
                 </p>
-
                 {correctness !== 'full' && (
                   <p>
                     <strong>Правильна відповідь:</strong>{' '}
-                    {question.type === 'text' || question.type === 'number'
-                      ? JSON.stringify(correctAns)
-                      : null}
-                    {question.type === 'list-num' ? (
-                      <ListNum Ans={correctAns.massiv} />
-                    ) : null}
-                    {question.type === 'matrix' ? (
-                      <Matrix Corr={correctAns} />
-                    ) : null}
-                    {question.type === 'variants' ? (
-                      <Variants_q Corr={correctAns} />
-                    ) : null}
-                    {question.type === 'list-pars' ? (
-                      <List_pars pairs={correctAns.pairs} />
-                    ) : null}
-                    {question.type === 'list-reber' ? (
-                      <List_reber Corr={correctAns} />
-                    ) : null}
+                    {renderCorrectAnswer(question, correctAns)}
                   </p>
                 )}
               </div>

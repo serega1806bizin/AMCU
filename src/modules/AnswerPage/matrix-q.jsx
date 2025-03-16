@@ -2,7 +2,6 @@ import React from 'react';
 import { InputNumber } from 'antd';
 
 export const Matrix = ({ Ans, Corr }) => {
-  // Если корректная матрица не передана или пуста, ничего не отображаем
   if (!Corr || !Array.isArray(Corr) || Corr.length === 0) {
     return null;
   }
@@ -18,12 +17,10 @@ export const Matrix = ({ Ans, Corr }) => {
           style={{ display: 'flex', marginBottom: 0 }}
         >
           {row.map((correctCell, colIndex) => {
-            // Если Ans не передана, отображаем значение из Corr
             const studentCell =
               Ans && Ans[rowIndex] ? Ans[rowIndex][colIndex] : undefined;
             const displayValue =
               Ans && Ans[rowIndex] ? studentCell : correctCell;
-            // Если Ans не передана, считаем, что всё верно (isCorrect = true)
             const isCorrect = Ans
               ? Number(studentCell) === Number(correctCell)
               : true;
