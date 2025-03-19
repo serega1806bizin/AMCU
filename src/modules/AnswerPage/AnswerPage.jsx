@@ -280,6 +280,10 @@ export const AnswerPage = () => {
         <p>
           <strong>Оцінка:</strong> {answer?.mark}
         </p>
+        <p>
+          <strong>Скільки разів переключався між вкладками:</strong>{' '}
+          {answer.tabSwitches}
+        </p>
         <Divider>Детальніше</Divider>
 
         <div>

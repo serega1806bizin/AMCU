@@ -16,6 +16,8 @@ import { Variant_Q } from './answer/variants-q';
 export const FormPage = () => {
   const [form] = Form.useForm();
   const { testId } = useParams();
+  const [wasOutOfTab, setWasOutOfTab] = useState(false);
+  const [tabSwitchCount, setTabSwitchCount] = useState(0); // Лічильник виходів із вкладки
 
   const [test, setTest] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
@@ -127,6 +129,64 @@ export const FormPage = () => {
     }
   };
 
+  useEffect(() => {
+    message.warning(
+      '⚠️ ПІД ЧАС ПРОХОДЖЕННЯ ТЕСТУ, ВАШІ ДІЇ БУДУТЬ ВІДСЛІДКОВУВАТИСЯ!',
+      10,
+    );
+  }, []);
+
+  useEffect(() => {
+    const logAction = action => {
+      // eslint-disable-next-line no-console
+      console.log(`[LOG] ${action} - ${new Date().toISOString()}`);
+    };
+
+    const enterFullScreen = () => {
+      if (document.documentElement.requestFullscreen) {
+        document.documentElement.requestFullscreen();
+      }
+    };
+
+    const handleVisibilityChange = () => {
+      if (document.hidden) {
+        logAction('⚠️ Студент переключився з вкладки!');
+        setWasOutOfTab(true);
+        setTabSwitchCount(prevCount => prevCount + 1); // Збільшуємо лічильник виходів
+      } else if (wasOutOfTab) {
+        message.warning('⚠️ ВАШІ ДІЇ БУЛИ ЗАМІЧЕНІ І ВРАХОВАНІ!');
+        logAction('⚠️ Студент повернувся на вкладку!');
+      }
+    };
+
+    const handleBeforeUnload = event => {
+      logAction('🚨 Студент намагався закрити сторінку!');
+      event.preventDefault();
+      // eslint-disable-next-line no-param-reassign
+      event.returnValue = 'Ви впевнені, що хочете покинути тест?';
+    };
+
+    const preventExitFullScreen = () => {
+      if (!document.fullscreenElement) {
+        logAction('🚨 Студент вийшов з повноекранного режиму!');
+        alert('⚠️ ВАШІ ДІЇ БУЛИ ЗАМІЧЕНІ І ВРАХОВАНІ!');
+        enterFullScreen();
+      }
+    };
+
+    document.addEventListener('visibilitychange', handleVisibilityChange);
+    window.addEventListener('beforeunload', handleBeforeUnload);
+    document.addEventListener('fullscreenchange', preventExitFullScreen);
+
+    enterFullScreen();
+
+    return () => {
+      document.removeEventListener('visibilitychange', handleVisibilityChange);
+      window.removeEventListener('beforeunload', handleBeforeUnload);
+      document.removeEventListener('fullscreenchange', preventExitFullScreen);
+    };
+  }, [wasOutOfTab]);
+
   // Основная функция отправки формы (Ant Design вызывает её при onFinish)
   const onFinish = () => {
     if (!test) {
@@ -144,6 +204,7 @@ export const FormPage = () => {
         'question-id': questionId,
         answer,
       })),
+      tabSwitches: tabSwitchCount,
     };
 
     setIsSubmitting(true);
