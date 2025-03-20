@@ -9,6 +9,7 @@ import { Matrix } from './matrix-q';
 import { Variants_q } from './variants-q';
 import { List_pars } from './list-pars';
 import { List_reber } from './list-reber';
+import { MatrixA } from './matrix-A';
 
 function pairsEqual(pair1, pair2) {
   const [a1, a2] = Array.isArray(pair1) ? pair1 : [pair1.x1, pair1.x2];
@@ -218,7 +219,7 @@ export const AnswerPage = () => {
       case 'list-num':
         return <ListNum Corr={correctAns} Ans={studentAns} />;
       case 'matrix':
-        return <Matrix Ans={studentAns.answer} Corr={correctAns} />;
+        return <MatrixA Ans={studentAns.answer} Corr={correctAns} />;
       case 'variants':
         return <Variants_q Ans={studentAns} Corr={correctAns} />;
       case 'list-pars':

@@ -38,7 +38,13 @@ export const DetailsTask = () => {
 
     const date = new Date(isoString);
 
-    return `${String(date.getUTCDate()).padStart(2, '0')}.${String(date.getUTCMonth() + 1).padStart(2, '0')}.${date.getUTCFullYear()} ${String(date.getUTCHours()).padStart(2, '0')}:${String(date.getUTCMinutes()).padStart(2, '0')}`;
+    // Применяем смещение для Киева, учитывая его текущий часовой пояс.
+    // Для Киева UTC+3 зимой и UTC+2 летом
+    const kievOffset = 0; // Если необходимо учитывать летнее время, можно сделать динамическую проверку для получения смещения.
+
+    date.setHours(date.getHours() + kievOffset);
+
+    return `${String(date.getDate()).padStart(2, '0')}.${String(date.getMonth() + 1).padStart(2, '0')}.${date.getFullYear()} ${String(date.getHours()).padStart(2, '0')}:${String(date.getMinutes()).padStart(2, '0')}`;
   };
 
   // Функция для загрузки данных
