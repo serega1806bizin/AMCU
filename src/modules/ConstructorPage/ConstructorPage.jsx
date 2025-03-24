@@ -158,10 +158,6 @@ export const ConstructorPage = () => {
               { required: true, message: 'Будь ласка, введіть номер роботи' },
               {
                 validator: (_, value) => {
-                  if (value === undefined || value === null) {
-                    return Promise.reject('Будь ласка, введіть номер роботи');
-                  }
-
                   if (value < 0) {
                     return Promise.reject('Номер не може бути відʼємним');
                   }
