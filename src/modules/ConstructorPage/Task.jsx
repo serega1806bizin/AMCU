@@ -179,16 +179,35 @@ export const TaskItem = ({
         labelCol={{ span: 6 }}
         name={`кількість балів_${id}`}
         rules={[
-          { required: true, message: 'Будь-ласка, вкажіть кількість балів' },
+          { required: true, message: 'Будь ласка, вкажіть кількість балів' },
+          {
+            validator: (_, value) => {
+              if (value === undefined || value === null || value === '') {
+                return Promise.reject('Поле не може бути порожнім');
+              }
+
+              if (value < 0) {
+                return Promise.reject('Кількість балів не може бути відʼємною');
+              }
+
+              return Promise.resolve();
+            },
+          },
         ]}
-        initialValue={initialData.points || 0}
+        initialValue={initialData.points || undefined}
       >
         <InputNumber
-          onChange={value =>
-            setAdditionalData(prev => ({ ...prev, points: value }))
-          }
+          value={additionalData.points}
+          onChange={value => {
+            if (value < 0) {
+              return;
+            } else {
+              setAdditionalData(prev => ({ ...prev, points: value }));
+            }
+          }}
         />
       </Form.Item>
+
       <Form.Item
         label="Текст питання:"
         name={`текст питання_${id}`}

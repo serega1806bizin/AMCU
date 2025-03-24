@@ -309,7 +309,38 @@ export const FormPage = () => {
             label="Ваше прізвище та ім'я"
             name="name"
             rules={[
-              { required: true, message: 'Будь ласка, введіть ваше ПІБ' },
+              {
+                required: true,
+                message: 'Будь ласка, введіть ваше ПІБ',
+              },
+              {
+                validator: (_, value) => {
+                  if (!value) {
+                    return Promise.resolve();
+                  }
+
+                  const parts = value.trim().split(/\s+/);
+
+                  if (parts.length !== 2) {
+                    return Promise.reject(
+                      'Введіть тільки прізвище та імʼя (2 слова)',
+                    );
+                  }
+
+                  const fullName = parts.join(' ');
+
+                  // Дозволено лише українські/латинські літери та пробіли між словами
+                  const onlyLettersRegex = /^[А-Яа-яЄєІіЇїҐґA-Za-z\s]+$/;
+
+                  if (!onlyLettersRegex.test(fullName)) {
+                    return Promise.reject(
+                      'ПІБ може містити тільки літери (без цифр і символів)',
+                    );
+                  }
+
+                  return Promise.resolve();
+                },
+              },
             ]}
           >
             <Input

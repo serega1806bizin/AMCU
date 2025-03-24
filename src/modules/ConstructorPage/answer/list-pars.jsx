@@ -79,7 +79,6 @@ export const List_pars = ({ onChange, fieldName }) => {
               <Text style={{ width: 80 }}>№{pair.id}</Text>
               <InputNumber
                 value={pair.first}
-                min={0}
                 placeholder="Перше"
                 onChange={value => updatePair(pair.id, 'first', value)}
                 controls={false}
@@ -92,7 +91,6 @@ export const List_pars = ({ onChange, fieldName }) => {
               />
               <InputNumber
                 value={pair.second}
-                min={0}
                 placeholder="Друге"
                 onChange={value => updatePair(pair.id, 'second', value)}
                 controls={false}

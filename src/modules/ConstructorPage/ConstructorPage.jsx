@@ -155,11 +155,35 @@ export const ConstructorPage = () => {
             label="Номер:"
             name="Nomer"
             rules={[
-              { required: true, message: 'Будь-ласка, введіть номер роботи' },
+              { required: true, message: 'Будь ласка, введіть номер роботи' },
+              {
+                validator: (_, value) => {
+                  if (value === undefined || value === null) {
+                    return Promise.reject('Будь ласка, введіть номер роботи');
+                  }
+
+                  if (value < 0) {
+                    return Promise.reject('Номер не може бути відʼємним');
+                  }
+
+                  return Promise.resolve();
+                },
+              },
             ]}
           >
-            <InputNumber onChange={value => setTestNumber(Number(value))} />
+            <InputNumber
+              value={testNumber}
+              onChange={value => {
+                if (value < 0) {
+                  // Ігноруємо або додатково можна встановити повідомлення вручну
+                  return;
+                } else {
+                  setTestNumber(value);
+                }
+              }}
+            />
           </Form.Item>
+
           <Form.Item name="checkbox1" valuePropName="checked">
             <Checkbox onChange={e => setIs1Checked(e.target.checked)}>
               Додати коментар для студентів
