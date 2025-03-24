@@ -111,69 +111,6 @@ html, body {
     height: 16px;
     width: 16px;
   }
-
-  &__icon {
-    display: flex;
-    position: relative;
-  }
-
-  &__iconLink {
-    display: none;
-    box-sizing: border-box;
-    align-items: center;
-    justify-content: center;
-    height: 48px;
-    width: 48px;
-    border-left: 1px solid $border-color;
-
-    @include on-tablet {
-      display: flex;
-    }
-
-    @include on-desktop {
-      height: 64px;
-      width: 64px;
-    }
-
-    @include hover(transform, scale(0.98));
-  }
-
-  &__iconLink:hover {
-    box-shadow: $border-color 0 0 0 1px;
-  }
-
-  &__iconLink:hover.is-active {
-    box-shadow: none;
-
-    @include hover(transform, scale(1));
-  }
-
-  &__iconImage {
-    height: 16px;
-    width: 16px;
-  }
-
-  &__iconAmount {
-    display: flex;
-    width: 14px;
-    height: 14px;
-    border-radius: 14px;
-    background-color: $button-color;
-    border: 1px solid #fff;
-    align-items: center;
-    justify-content: center;
-    position: absolute;
-    bottom: 8px;
-    left: 8px;
-  }
-
-  &__iconAmountText {
-    color: #fff;
-    font-family: Mont-Regular, sans-serif;
-    font-size: 9px;
-    line-height: 12px;
-    font-weight: 700;
-  }
 }
 
 .is-active {
