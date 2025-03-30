@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import styles from './ProductCard.module.scss';
+import styles from './TaskCard.module.scss';
 import classNames from 'classnames';
 import { Task } from '../../types/Task';
 

@@ -6,8 +6,8 @@ import classNames from 'classnames';
 import { Loader } from '../../components/Loader';
 import { TestType } from '../../enums/TestType';
 import { Task } from '../../types/Task';
-import { TaskCard } from '../ProductCard';
 import icon from '../../../public/img/icons/arrow-right-icon.svg';
+import { TaskCard } from '../TaskCard/TaskCard';
 
 // Простой debounce-хук
 function useDebounce<T>(value: T, delay: number): T {
