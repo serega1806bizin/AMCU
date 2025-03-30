@@ -92,15 +92,14 @@ export const DetailsTask = () => {
         );
 
         await res.json();
-        message.success(`Тест ${testId} удалён`);
-        // Можно обновить состояние или использовать navigate для перехода
+        message.success(`Тест "${test?.nazwa}" успішно видалено!`);
         navigate('/task');
       } catch (error) {
         console.error('Ошибка удаления теста:', error);
-        message.error('Ошибка удаления теста');
+        message.error('Помилка видалення тесту');
       }
     },
-    [navigate],
+    [navigate, test],
   );
 
   // Мемоизированные колонки таблицы

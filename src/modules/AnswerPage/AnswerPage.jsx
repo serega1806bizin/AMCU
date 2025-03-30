@@ -154,11 +154,13 @@ export const AnswerPage = () => {
 
       case 'variants': {
         let count = 0;
+
         for (let i = 0; i < studentAns.length; i++) {
           if (studentAns[i] === correctAns.correct[i]) {
             count++;
           }
         }
+
         correctness =
           count === studentAns.length ? 'full' : count > 0 ? 'partial' : 'none';
         break;
@@ -185,12 +187,17 @@ export const AnswerPage = () => {
 
       case 'list-reber': {
         let correctCount = 0;
+
         for (const correctEdge of correctAns) {
           const found = studentAns.answer.some(studentEdge =>
             pairsEqual(correctEdge, studentEdge),
           );
-          if (found) correctCount++;
+
+          if (found) {
+            correctCount++;
+          }
         }
+
         correctness =
           correctCount === correctAns.length &&
           studentAns.answer.length === correctAns.length
@@ -202,17 +209,25 @@ export const AnswerPage = () => {
       }
 
       default:
+        // eslint-disable-next-line no-console
         console.warn(`⚠️ Невідомий тип питання: ${question.type}`);
     }
 
     return correctness;
   };
 
-  const renderStudentAnswer = (question, studentAns, correctAns, correctness) => {
+  const renderStudentAnswer = (
+    question,
+    studentAns,
+    correctAns,
+    correctness,
+  ) => {
     switch (question.type) {
       case 'text':
       case 'number':
-        return <span style={{ color: getColor(correctness) }}>{studentAns}</span>;
+        return (
+          <span style={{ color: getColor(correctness) }}>{studentAns}</span>
+        );
       case 'list-num':
         return <ListNum Corr={correctAns} Ans={studentAns} />;
       case 'matrix':
@@ -248,7 +263,9 @@ export const AnswerPage = () => {
     }
   };
 
-  if (isLoading) return <Loader />;
+  if (isLoading) {
+    return <Loader />;
+  }
 
   return (
     <Row justify="center" style={{ padding: 10 }}>
@@ -269,13 +286,23 @@ export const AnswerPage = () => {
         <h1>Результат ✅</h1>
         {isObsolete && (
           <p style={{ color: 'red' }}>
-            ⚠️ Увага! Цей тест був змінений після відповіді студента. Дані можуть не відповідати структурі тесту.
+            ⚠️ Увага! Цей тест був змінений після відповіді студента. Дані
+            можуть не відповідати структурі тесту.
           </p>
         )}
-        <p><strong>Студент:</strong> {answer?.student}</p>
-        <p><strong>Група:</strong> {answer?.group}</p>
-        <p><strong>Оцінка:</strong> {answer?.mark}</p>
-        <p><strong>Скільки разів переключався між вкладками:</strong> {answer.tabSwitches}</p>
+        <p>
+          <strong>Студент:</strong> {answer?.student}
+        </p>
+        <p>
+          <strong>Група:</strong> {answer?.group}
+        </p>
+        <p>
+          <strong>Оцінка:</strong> {answer?.mark}
+        </p>
+        <p>
+          <strong>Скільки разів переключався між вкладками:</strong>{' '}
+          {answer.tabSwitches}
+        </p>
 
         <Divider>Детальніше</Divider>
 
@@ -296,8 +323,12 @@ export const AnswerPage = () => {
                     backgroundColor: '#ffe4e4',
                   }}
                 >
-                  <p><strong>Питання:</strong> {question.text}</p>
-                  <p style={{ color: 'red' }}>⚠️ Немає відповіді або структура порушена.</p>
+                  <p>
+                    <strong>Питання:</strong> {question.text}
+                  </p>
+                  <p style={{ color: 'red' }}>
+                    ⚠️ Немає відповіді або структура порушена.
+                  </p>
                 </div>
               );
             }
@@ -322,12 +353,23 @@ export const AnswerPage = () => {
                   backgroundColor: bgColor,
                 }}
               >
-                <p><strong>Питання:</strong> {question.text}</p>
-                <p><strong>Відповідь студента:</strong>{' '}
-                  {renderStudentAnswer(question, studentAns, correctAns, correctness)}
+                <p>
+                  <strong>Питання:</strong> {question.text}
+                </p>
+                <p>
+                  <strong>Відповідь студента:</strong>{' '}
+                  {renderStudentAnswer(
+                    question,
+                    studentAns,
+                    correctAns,
+                    correctness,
+                  )}
                 </p>
                 {correctness !== 'full' && (
-                  <p><strong>Правильна відповідь:</strong> {renderCorrectAnswer(question, correctAns)}</p>
+                  <p>
+                    <strong>Правильна відповідь:</strong>{' '}
+                    {renderCorrectAnswer(question, correctAns)}
+                  </p>
                 )}
               </div>
             );
