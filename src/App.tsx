@@ -3,7 +3,6 @@ import './utils/font-styles.scss';
 import { Header } from './components/Header';
 import { Outlet, useLocation, Navigate, useNavigate } from 'react-router-dom';
 import { useContext, useEffect, useState } from 'react';
-import { Menu } from './components/Menu';
 import { Footer } from './components/Footer';
 import { StateContext } from './Store/Store';
 import { Button, Col, Form, Input, message, Row } from 'antd';

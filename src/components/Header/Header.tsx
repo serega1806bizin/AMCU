@@ -1,13 +1,5 @@
-import styles from './Header.module.scss';
 import classNames from 'classnames';
-import { useContext, useEffect, useState } from 'react';
-import { Link, NavLink, useLocation } from 'react-router-dom';
-import { DispatchContext, StateContext } from '../../Store/Store';
-import { Navbar } from '../../enums/Navbar';
-import logo from '../../../public/img/physics.png';
-import closeIcon from '../../../public/img/icons/close-icon.svg';
-import menuIcon from '../../../public/img/icons/menu-icon.svg';
-import { Button, message } from 'antd';
+import { NavLink, useLocation } from 'react-router-dom';
 
 const getNavbarLinkClass = ({ isActive }: { isActive: boolean }) =>
   classNames(styles.header__navbarItem, {
@@ -15,92 +7,58 @@ const getNavbarLinkClass = ({ isActive }: { isActive: boolean }) =>
   });
 
 export const Header = () => {
-  const dispatch = useContext(DispatchContext);
-  const { isMenuVisible } = useContext(StateContext);
-  const [wasMenuOpen, setWasMenuOpen] = useState(isMenuVisible);
   const location = useLocation();
 
-  useEffect(() => {
-    const handleResize = () => {
-      if (window.innerWidth >= 640) {
-        if (isMenuVisible) {
-          setWasMenuOpen(true);
-          dispatch({ type: 'closeMenu' });
-        }
-      } else {
-        if (wasMenuOpen) {
-          dispatch({ type: 'openMenu' });
-          setWasMenuOpen(false);
-        }
-      }
-    };
-
-    window.addEventListener('resize', handleResize);
-    handleResize();
-
-    return () => window.removeEventListener('resize', handleResize);
-  }, [dispatch, isMenuVisible, wasMenuOpen]);
-
-  const navLabels: Record<string, string> = {
-    task: 'роботи',
-    create: 'Створити роботу',
-  };
-
-  const handleLogout = () => {
-    localStorage.removeItem('authData'); // или другой ключ, используемый для сессии
-    message.success('Вихід з системи успішно виконано!');
-    window.location.reload();
-  };
-
   return (
-    <header className={styles.header}>
-      <div className={styles.header__content}>
-        <Link to={'/task'} className={styles.header__logoLink}>
-          <img src={logo} alt="Logo" className={styles.header__logo} />
-        </Link>
-        <div className={styles.header__navbar}>
-          {Object.values(Navbar).map(page => (
-            <NavLink to={page} className={getNavbarLinkClass} key={page}>
-              {navLabels[page] || page}
+    <header id="nav">
+      <div className="container">
+        <nav className="col">
+          <div className="flrr">
+            <NavLink to="/" className={classNames('logo', 'btno')}>
+              <img src="/public/logo.svg" alt="" />
             </NavLink>
-          ))}
-        </div>
-        {location.pathname !== '/' && (
-          <Button
-            type="primary"
-            danger
-            onClick={handleLogout}
-            size="small"
-            style={{ marginLeft: 10 }}
-          >
-            Вихід із системи
-          </Button>
-        )}
-      </div>
+            <div className="links">
+              <NavLink to="/" className="btn btn4 sml hid-s hid-m">
+                Головна
+              </NavLink>
+              <NavLink to="/news" className="btn btn4 sml hid-s hid-m">
+                Новини
+              </NavLink>
+              <NavLink to="/about-us" className="btn btn4 sml hid-s hid-m">
+                Про нас
+              </NavLink>
+              <NavLink to="/contacts" className="btn btn4 sml hid-s hid-m">
+                Контакти
+              </NavLink>
+            </div>
+            <a
+              href="https://youthcenters.net.ua/join/"
+              target="_blank"
+              rel="nofollow noreferrer noopener"
+              className="btn btn3 big prevent hid-s hid-m"
+            >
+              Вступити
+            </a>
+          </div>
 
-      <div className={styles.header__iconsContainer}>
-        <button
-          className={styles.header__menuButton}
-          onClick={() =>
-            isMenuVisible
-              ? dispatch({ type: 'closeMenu' })
-              : dispatch({ type: 'openMenu' })
-          }
-        >
-          {isMenuVisible ? (
-            <img
-              src={closeIcon}
-              className={styles.header__closeIcon}
-              alt="Закрити меню"
-            />
-          ) : (
-            <img
-              src={menuIcon}
-              className={styles.header__menuIcon}
-              alt="Відкрити меню"
-            />
-          )}
-        </button>
+          <button className="hamb menu-open hid-l hid-xl">
+            <svg
+              width="18"
+              height="14"
+              viewBox="0 0 18 14"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                fillRule="evenodd"
+                clipRule="evenodd"
+                // eslint-disable-next-line max-len
+                d="M0.29248 0.25H17.7925V1.75H0.29248V0.25ZM0.29248 6.25H17.7925V7.75H0.29248V6.25ZM0.29248 12.25H17.7925V13.75H0.29248V12.25Z"
+                fill="#252525"
+              />
+            </svg>
+          </button>
+        </nav>
       </div>
     </header>
   );
