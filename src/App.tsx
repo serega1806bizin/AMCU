@@ -1,4 +1,3 @@
-import './App.scss';
 import './utils/font-styles.scss';
 import { Header } from './components/Header';
 import { Outlet } from 'react-router-dom';
