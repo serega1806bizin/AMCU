@@ -1872,6 +1872,10 @@ li+li {
     color: var(--acc)
 }
 
+.aaaa{
+    text-align: center;
+}
+
 .acc- {
     background: var(--acc)
 }

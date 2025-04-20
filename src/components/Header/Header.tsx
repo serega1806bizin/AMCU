@@ -1,14 +1,7 @@
 import classNames from 'classnames';
-import { NavLink, useLocation } from 'react-router-dom';
-
-const getNavbarLinkClass = ({ isActive }: { isActive: boolean }) =>
-  classNames(styles.header__navbarItem, {
-    [styles['is-active']]: isActive,
-  });
+import { NavLink } from 'react-router-dom';
 
 export const Header = () => {
-  const location = useLocation();
-
   return (
     <header id="nav">
       <div className="container">
