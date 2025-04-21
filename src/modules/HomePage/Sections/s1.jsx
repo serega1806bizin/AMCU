@@ -23,7 +23,7 @@ export const S1 = () => {
             ref={imageRef}
             className="img can-animate anim-r"
             style={{
-              background: `url(/public/s1.png) center/cover no-repeat`,
+              background: `url(../../../public/s1.png) center/cover no-repeat`,
             }}
           ></div>
         </div>
