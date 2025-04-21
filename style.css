@@ -2606,3 +2606,15 @@ textarea {
     grid-column: span 12;
   }
 }
+
+
+.slick-dots li button {
+  background: #888 !important; /* колір неактивних */
+  border-radius: 4px;
+}
+
+.slick-active button {
+  background: #00C2FF !important; /* колір активної */
+}
+
+

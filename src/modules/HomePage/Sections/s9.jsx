@@ -1,5 +1,6 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import { useRef, useState } from 'react';
+// eslint-disable-next-line import/no-extraneous-dependencies
 import emailjs from '@emailjs/browser';
 import { useAnimateInView } from '../useAnimateInView';
 
@@ -23,8 +24,9 @@ export const S9 = () => {
           setStatus('✅ Повідомлення надіслано!');
           formRef.current.reset();
         },
+        // eslint-disable-next-line @typescript-eslint/no-unused-vars
         error => {
-          console.error(error);
+          // console.error(error);
           setStatus('❌ Сталася помилка, спробуйте ще раз.');
         },
       );

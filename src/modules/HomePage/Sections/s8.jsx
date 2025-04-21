@@ -63,7 +63,7 @@ export const S8 = () => {
               </Link>
             ))}
             <Link to="/news" className="btn btn2" ref={btnRef}>
-              Більше можливостей →
+              Більше новин →
             </Link>
           </div>
         </div>
