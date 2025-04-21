@@ -2,6 +2,7 @@ import './utils/font-styles.scss';
 import { Header } from './components/Header';
 import { Outlet } from 'react-router-dom';
 import { Footer } from './components/Footer';
+import { Menu } from './components/Menu';
 
 export const App = () => {
   return (
@@ -18,6 +19,7 @@ export const App = () => {
         </main>
         <Footer />
       </div>
+      <Menu />
     </>
   );
 };

@@ -1967,8 +1967,7 @@ main {
     line-height: 22px
 }
 
-#nav nav>.btn.activeCat:before,
-#mob_menu nav>a.activeCat:before {
+.activeCat:before {
     position: absolute;
     left: calc(50% - .25rem);
     top: .25rem;

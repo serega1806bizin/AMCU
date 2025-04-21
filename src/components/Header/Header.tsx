@@ -1,8 +1,11 @@
 import classNames from 'classnames';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import logo from '/public/logo.svg';
 
 export const Header = () => {
+  const location = useLocation();
+  const path = location.pathname;
+
   return (
     <header id="nav">
       <div className="container">
@@ -11,20 +14,42 @@ export const Header = () => {
             <Link to="/" className={classNames('logo', 'btno')}>
               <img src={logo} alt="" />
             </Link>
+
             <div className="links">
-              <Link to="/" className="btn btn4 sml hid-s hid-m">
+              <Link
+                to="/"
+                className={classNames('btn btn4 sml hid-s hid-m', {
+                  activeCat: path === '/',
+                })}
+              >
                 Головна
               </Link>
-              <Link to="/news" className="btn btn4 sml hid-s hid-m">
+              <Link
+                to="/news"
+                className={classNames('btn btn4 sml hid-s hid-m', {
+                  activeCat: path === '/news',
+                })}
+              >
                 Новини
               </Link>
-              <Link to="/about-us" className="btn btn4 sml hid-s hid-m">
+              <Link
+                to="/about-us"
+                className={classNames('btn btn4 sml hid-s hid-m', {
+                  activeCat: path === '/about-us',
+                })}
+              >
                 Про нас
               </Link>
-              <Link to="/contacts" className="btn btn4 sml hid-s hid-m">
+              <Link
+                to="/contacts"
+                className={classNames('btn btn4 sml hid-s hid-m', {
+                  activeCat: path === '/contacts',
+                })}
+              >
                 Контакти
               </Link>
             </div>
+
             <a
               href="https://youthcenters.net.ua/join/"
               target="_blank"
