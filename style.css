@@ -1082,6 +1082,11 @@ ol {
         margin-left: auto;
         margin-right: auto
     }
+    .container_res {
+      max-width: 390px;
+      margin-left: auto;
+      margin-right: auto
+    }
 }
 
 @media (min-width:700px) and (max-width:1200px) {
@@ -1090,6 +1095,11 @@ ol {
         margin-left: auto;
         margin-right: auto
     }
+    .container_res {
+      max-width: 768px;
+      margin-left: auto;
+      margin-right: auto
+  }
 }
 
 .col {
@@ -1658,7 +1668,7 @@ ol {
 
     h2,
     .h2 {
-        font: 500 calc(27rem / 16)/2.0rem f, sans-serif
+        font: 600 calc(27rem / 16)/2.0rem f, sans-serif
     }
 
     h3,
@@ -2585,7 +2595,7 @@ textarea {
 
 .post-card h3 {
   font-size: 16px;
-  font-weight: 600;
+  font-weight: 550;
   margin-bottom: 10px;
 }
 
