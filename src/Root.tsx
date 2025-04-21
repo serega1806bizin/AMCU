@@ -3,10 +3,12 @@ import { App } from './App';
 import { GlobalStateProvider } from './Store/Store';
 import { NotFoundPage } from './components/NotFoundPage';
 import { HomePage } from './modules/HomePage/HomePage';
+import { ScrollToTop } from './ScrollToTop';
 
 export const Root = () => (
   <Router>
     <GlobalStateProvider>
+      <ScrollToTop />
       <Routes>
         <Route path="/" element={<App />}>
           <Route index element={<HomePage />} />
