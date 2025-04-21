@@ -1,167 +1,671 @@
 <!doctype html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Асоціація молодіжних центрів України | Кропивницький</title>
-  <style>
-    html {
-      font-family: sans-serif;
-    }
-    .preloader {
-      position: fixed;
-      z-index: 9999;
-      top: 0;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      background: #fff;
-    }
-    img:is([sizes='auto' i], [sizes^='auto,' i]) {
-        contain-intrinsic-size: 3000px 1500px;
+<html lang="uk">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=360, initial-scale=1" />
+    <style>
+      html {
+        font-family: sans-serif;
       }
-  </style>
+      .preloader {
+        position: fixed;
+        z-index: 9999;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background: #fff;
+      }
+    </style>
 
-  <script type="module" crossorigin src="./assets/index-jBEwZ_o9.js"></script>
-  <link rel="stylesheet" crossorigin href="./assets/index-D1JPN1vP.css">
-</head>
+    <title>Асоціація молодіжних центрів України | Кропівницька філія </title>
+
+    <link
+      rel="stylesheet"
+      id="swiper-css"
+      href="https://weworld.org.ua/wp-content/themes/s/swiper.min.css"
+      type="text/css"
+      media="all"
+    />
+    <link
+      rel="stylesheet"
+      id="spqr-style-css"
+      href="https://weworld.org.ua/wp-content/cache/autoptimize/css/autoptimize_single_9e46be20cc863e08d7d54802c858eea1.css"
+      type="text/css"
+      media="all"
+    />
+
+    <link
+      rel="icon"
+      href="./assets/logo-B983G7Cx.svg"
+      sizes="32x32"
+    />
+    <link
+      rel="icon"
+      href="./assets/logo-B983G7Cx.svg"
+      sizes="192x192"
+    />
+    <link
+      rel="apple-touch-icon"
+      href="./assets/logo-B983G7Cx.svg"
+    />
+    <meta
+      name="msapplication-TileImage"
+      content="/public/logo.svg"
+    />
+
+    <!-- Google tag (gtag.js) -->
+    <script
+      defer
+      src="https://www.googletagmanager.com/gtag/js?id=G-8TX97HFH8E"
+    ></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag('js', new Date());
+      gtag('config', 'G-8TX97HFH8E');
+    </script>
+    <script type="module" crossorigin src="./assets/index-plxNJc-s.js"></script>
+    <link rel="stylesheet" crossorigin href="./assets/index-DsY97j-y.css">
+  </head>
   <body id="totop" data-barba="wrapper">
+    <style>
+      #s1 {
+        background: #F6A906;
+      }
+      #s1 .col {
+        min-height: calc(100vh - 6.5rem);
+        display: flex;
+        flex-direction: column;
+      }
+      #s1 .hdr_ {
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        padding: 3rem 0 2rem;
+      }
+      #s1 .hdr {
+        display: flex;
+        align-items: center;
+        color: black !important;
+      }
+      #s1 .hdr .div {
+        width: 2px;
+        height: 4rem;
+        background: var(--blk);
+        margin: 0 1rem;
+      }
+      #s1 .img {
+        flex: 1;
+      }
+
+      #s1 .pla,
+      #s1 .pla .logos_ {
+        display: flex;
+        align-items: center;
+      }
+      #s1 .pla p {
+        width: 26rem;
+        margin: 0 0 0 1rem;
+      }
+      #s1 .pla .logos_ img + img {
+        margin: 0 0 0 1rem;
+      }
+      #s1 .pla img {
+        max-height: 4rem;
+        max-width: 6rem;
+      }
+
+      #s2 .nums_ {
+        display: flex;
+        align-items: center;
+        padding: 0 3rem 0 0;
+      }
+      #s2 .nums {
+        display: flex;
+        justify-content: space-between;
+        text-align: center;
+        width: 100%;
+      }
+      #s2 .nums .h1 {
+        font-weight: 500;
+      }
+
+      #s3 h2 {
+        padding: 0 0 2rem;
+      }
+      #s3 .img_ {
+        position: relative;
+        grid-row: 2 / 4;
+        grid-column: 7 / 13;
+      }
+      #s3 .img_ img {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100% !important;
+        object-fit: contain;
+      }
+      #s3 .box {
+        margin: 3rem 0 0;
+        padding: 3rem 2rem;
+        border-radius: 0.5rem;
+        background: var(--gry2);
+        display: flex;
+        align-items: center;
+      }
+      #s3 .box .h5 {
+        padding: 0 2rem 0 0;
+      }
+      #s3 .box .btn.btn1 {
+        padding: 2rem 2rem;
+        display: flex;
+        align-items: center;
+        white-space: nowrap;
+        font-weight: 400;
+      }
+      #s3 .box .btn.btn1 .div {
+        width: 1px;
+        height: 3rem;
+        background: var(--wht);
+        margin: 0 1rem;
+      }
+
+      .posts {
+        display: grid;
+        grid-template: auto / repeat(4, 1fr);
+        grid-gap: 1rem;
+        width: 100%;
+        padding: 2rem 0 0;
+      }
+      .posts .btn {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 1rem;
+      }
+      .spost,
+      .spost span {
+        display: block;
+        color: var(--blk);
+      }
+      .spost span + span {
+        margin: 1rem 0 0;
+      }
+      .spost .img {
+        border-radius: 0.25rem;
+        padding: 70% 0 0;
+        transition: 0.4s;
+      }
+      /*.spost .p { position: relative; height: calc(1.8rem * 3); overflow: hidden; }
+  .spost .p::after { height: 1.8rem; position: absolute; bottom: 0; left: 0; right: 0; z-index: 1; background: linear-gradient(180deg, #F8F8F700 0, #F8F8F7 80%); display: block; content: ''; }*/
+      @media (pointer: fine) {
+        .spost:hover .img {
+          box-shadow: inset 0 0 0 2px var(--acc);
+        }
+      }
+
+      .gal {
+        display: grid;
+        grid-template: auto / repeat(7, 1fr);
+        grid-gap: 1rem;
+        width: 100%;
+        padding: 2rem 0 0;
+      }
+      .gal div {
+        text-align: center;
+      }
+      .gal .img {
+        height: 7rem;
+        mix-blend-mode: multiply;
+      }
+      .gal p {
+        padding: 1rem 0 0;
+      }
+
+      #s9 h2 {
+        padding: 0 0 2rem;
+      }
+      .sup {
+        display: grid;
+        grid-template: auto / 2fr 5fr;
+        grid-gap: 1rem;
+        width: 100%;
+      }
+      .sup + .sup {
+        margin: 1rem 0 0;
+      }
+      .sup .num {
+        position: relative;
+        padding: 100% 0 0;
+        background: var(--gry2);
+        border-radius: 0.25rem;
+      }
+      .sup .num p {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        z-index: 1;
+        transform: translate(-50%, -50%);
+        text-align: center;
+      }
+      .sup .btn_ {
+        background: var(--gry2);
+        border-radius: 0.25rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 1rem 7.5rem;
+      }
+      .sup .btn_ p {
+        padding: 1rem 0 0;
+      }
+      .sup:first-of-type .btn_,
+      .sup:last-of-type .btn_ {
+        background: var(--acc);
+      }
+
+      #s2,
+      #s4,
+      #s5,
+      #s6,
+      #s7,
+      #s8,
+      #s9 {
+        margin: 6rem 0 0;
+      }
+      #s10 {
+        margin: 6rem 0 4rem;
+      }
+      #s3 {
+        margin: 3rem 0 0;
+      }
+
+      @media (min-width: 1600px) {
+        #s1 .hdr .div {
+          margin: 0 2rem;
+        }
+
+        #s1 .pla p {
+          width: 40rem;
+          margin: 0 0 0 2rem;
+        }
+        #s1 .pla .logos_ img + img {
+          margin: 0 0 0 2rem;
+        }
+        #s1 .pla img {
+          max-height: 5rem;
+          max-width: 7rem;
+        }
+
+        #s2,
+        #s3,
+        #s4,
+        #s5,
+        #s6,
+        #s7,
+        #s8,
+        #s9 {
+          margin: 5rem 0 0;
+        }
+        #s10 {
+          margin: 5rem 0 3rem;
+        }
+        /*.spost .p { height: calc(1.4rem * 3); }
+    .spost .p::after { height: 1.4rem; }*/
+      }
+
+      @media (max-width: 1200px) {
+        #s2 .nums_ {
+          padding: 0 0 4rem;
+        }
+        #s2 .nums {
+          justify-content: center;
+        }
+        #s2 .nums p + p {
+          margin: 0 0 0 3rem;
+        }
+
+        #s3 .img_ {
+          padding: 62.5% 0 0;
+          grid-row: 3 / 4;
+          grid-column: 1 / 13;
+          margin: 3rem 0 0;
+        }
+
+        .posts {
+          grid-template: auto / repeat(2, 1fr);
+          grid-gap: 2rem 1rem;
+        }
+
+        .gal {
+          grid-template: auto / repeat(4, 1fr);
+          grid-gap: 2rem 1rem;
+        }
+
+        #s9 .col-m + .col-m {
+          margin: 3rem 0 0;
+        }
+
+        /* 		  #s10 .box { padding: .5rem 2rem 2rem; } */
+      }
+
+      @media (max-width: 700px) {
+        #s2,
+        #s3,
+        #s4,
+        #s5,
+        #s6,
+        #s7,
+        #s8,
+        #s9 {
+          margin: 3rem 0 0;
+        }
+        #s10 {
+          margin: 3rem 0 1rem;
+        }
+
+        #s1 .col {
+          min-height: 1rem;
+        }
+        #s1 .hdr {
+          flex-direction: column;
+          align-items: flex-start;
+          padding: 2rem 0;
+        }
+        #s1 .hdr .div {
+          height: 1rem;
+          background: transparent;
+        }
+        #s1 .hdr .h6 br {
+          display: none;
+        }
+        #s1 .img {
+          padding: 63% 0 0;
+          width: 100%;
+          margin: 0;
+          flex: none;
+        }
+
+        #s2 .nums {
+          justify-content: space-between;
+        }
+        #s2 .nums p + p {
+          margin: 0 0 0 1rem;
+        }
+        #s1 .pla {
+          padding: 0;
+          flex-wrap: wrap;
+          justify-content: flex-start;
+        }
+        #s1 .pla .logos_ {
+          width: 100%;
+          padding: 0 0 0.5rem;
+        }
+        #s1 .pla p {
+          width: 100%;
+          flex: none;
+          margin: 0;
+        }
+        #s1 .pla * + * {
+          margin: 1rem 1rem 0;
+        }
+        #s1 .pla img {
+          height: 4rem;
+          max-width: 7rem;
+        }
+
+        #s3 .img_ {
+          padding: 62.5% 0 0;
+          grid-row: 3 / 4;
+          grid-column: 1 / 7;
+          margin: 2rem 0 0;
+        }
+        #s3 .box {
+          margin: 2rem 0 0;
+          padding: 2rem 1rem;
+          flex-wrap: wrap;
+        }
+        #s3 .box > * {
+          width: 100%;
+        }
+        #s3 .box .h5 {
+          padding: 0 0 2rem;
+        }
+        #s3 .box .btn.btn1 {
+          justify-content: center;
+        }
+
+        .spost .img,
+        .posts .btn {
+          height: 7rem;
+          padding: 1rem 0;
+        }
+
+        .gal {
+          grid-template: auto / repeat(2, 1fr);
+          grid-gap: 2rem 1rem;
+        }
+
+        .sup {
+          grid-gap: 0.5rem;
+          align-items: start;
+        }
+        .sup + .sup {
+          margin: 0.5rem 0 0;
+        }
+        .sup .btn_ {
+          padding: 1rem;
+        }
+
+        /* 		  #s10 .box { padding: .5rem 1rem 1rem; margin: 2rem 0 0; } */
+      }
+    </style>
     <div id="root"></div>
-  </body>
 
+    <div
+      class="brb"
+      data-barba="container"
+      data-barba-namespace="main"
+      data-ptype="/"
+    >
+    </div>
 
-
-
-  <script
-  defer
-  type="text/javascript"
-  src="https://weworld.org.ua/wp-content/plugins/svg-support/vendor/DOMPurify/DOMPurify.min.js"
-  id="bodhi-dompurify-library-js"
-></script>
-<script
-  type="text/javascript"
-  src="https://weworld.org.ua/wp-includes/js/dist/hooks.min.js"
-  id="wp-hooks-js"
-></script>
-<script
-  type="text/javascript"
-  src="https://weworld.org.ua/wp-includes/js/dist/i18n.min.js"
-  id="wp-i18n-js"
-></script>
-<script type="text/javascript" id="wp-i18n-js-after">
-  /* <![CDATA[ */
-  wp.i18n.setLocaleData({ 'text direction\u0004ltr': ['ltr'] });
-  /* ]]> */
-</script>
-<script
-  defer
-  type="text/javascript"
-  src="https://weworld.org.ua/wp-content/cache/autoptimize/js/autoptimize_single_96e7dc3f0e8559e4a3f3ca40b17ab9c3.js"
-  id="swv-js"
-></script>
-<script type="text/javascript" id="contact-form-7-js-translations">
-  /* <![CDATA[ */
-  (function (domain, translations) {
-    var localeData =
-      translations.locale_data[domain] || translations.locale_data.messages;
-    localeData[''].domain = domain;
-    wp.i18n.setLocaleData(localeData, domain);
-  })('contact-form-7', {
-    'translation-revision-date': '2025-04-10 14:47:40+0000',
-    generator: 'GlotPress\/4.0.1',
-    domain: 'messages',
-    locale_data: {
-      messages: {
-        '': {
-          domain: 'messages',
-          'plural-forms':
-            'nplurals=3; plural=(n % 10 == 1 && n % 100 != 11) ? 0 : ((n % 10 >= 2 && n % 10 <= 4 && (n % 100 < 12 || n % 100 > 14)) ? 1 : 2);',
-          lang: 'uk_UA',
+    <script
+      defer
+      type="text/javascript"
+      src="https://weworld.org.ua/wp-content/plugins/svg-support/vendor/DOMPurify/DOMPurify.min.js"
+      id="bodhi-dompurify-library-js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="https://weworld.org.ua/wp-includes/js/dist/hooks.min.js"
+      id="wp-hooks-js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="https://weworld.org.ua/wp-includes/js/dist/i18n.min.js"
+      id="wp-i18n-js"
+    ></script>
+    <script type="text/javascript" id="wp-i18n-js-after">
+      /* <![CDATA[ */
+      wp.i18n.setLocaleData({ 'text direction\u0004ltr': ['ltr'] });
+      /* ]]> */
+    </script>
+    <script
+      defer
+      type="text/javascript"
+      src="https://weworld.org.ua/wp-content/cache/autoptimize/js/autoptimize_single_96e7dc3f0e8559e4a3f3ca40b17ab9c3.js"
+      id="swv-js"
+    ></script>
+    <script type="text/javascript" id="contact-form-7-js-translations">
+      /* <![CDATA[ */
+      (function (domain, translations) {
+        var localeData =
+          translations.locale_data[domain] || translations.locale_data.messages;
+        localeData[''].domain = domain;
+        wp.i18n.setLocaleData(localeData, domain);
+      })('contact-form-7', {
+        'translation-revision-date': '2025-04-10 14:47:40+0000',
+        generator: 'GlotPress\/4.0.1',
+        domain: 'messages',
+        locale_data: {
+          messages: {
+            '': {
+              domain: 'messages',
+              'plural-forms':
+                'nplurals=3; plural=(n % 10 == 1 && n % 100 != 11) ? 0 : ((n % 10 >= 2 && n % 10 <= 4 && (n % 100 < 12 || n % 100 > 14)) ? 1 : 2);',
+              lang: 'uk_UA',
+            },
+            'This contact form is placed in the wrong place.': [
+              '\u0426\u044f \u043a\u043e\u043d\u0442\u0430\u043a\u0442\u043d\u0430 \u0444\u043e\u0440\u043c\u0430 \u0440\u043e\u0437\u043c\u0456\u0449\u0435\u043d\u0430 \u0432 \u043d\u0435\u043f\u0440\u0430\u0432\u0438\u043b\u044c\u043d\u043e\u043c\u0443 \u043c\u0456\u0441\u0446\u0456.',
+            ],
+            'Error:': ['\u041f\u043e\u043c\u0438\u043b\u043a\u0430:'],
+          },
         },
-        'This contact form is placed in the wrong place.': [
-          '\u0426\u044f \u043a\u043e\u043d\u0442\u0430\u043a\u0442\u043d\u0430 \u0444\u043e\u0440\u043c\u0430 \u0440\u043e\u0437\u043c\u0456\u0449\u0435\u043d\u0430 \u0432 \u043d\u0435\u043f\u0440\u0430\u0432\u0438\u043b\u044c\u043d\u043e\u043c\u0443 \u043c\u0456\u0441\u0446\u0456.',
-        ],
-        'Error:': ['\u041f\u043e\u043c\u0438\u043b\u043a\u0430:'],
-      },
-    },
-    comment: { reference: 'includes\/js\/index.js' },
-  });
-  /* ]]> */
+        comment: { reference: 'includes\/js\/index.js' },
+      });
+      /* ]]> */
+    </script>
+    <script type="text/javascript" id="contact-form-7-js-before">
+      /* <![CDATA[ */
+      var wpcf7 = {
+        api: {
+          root: 'https:\/\/weworld.org.ua\/wp-json\/',
+          namespace: 'contact-form-7\/v1',
+        },
+      };
+      /* ]]> */
+    </script>
+    <script
+      defer
+      type="text/javascript"
+      src="https://weworld.org.ua/wp-content/cache/autoptimize/js/autoptimize_single_2912c657d0592cc532dff73d0d2ce7bb.js"
+      id="contact-form-7-js"
+    ></script>
+    <script
+      defer
+      type="text/javascript"
+      src="https://weworld.org.ua/wp-content/cache/autoptimize/js/autoptimize_single_5f35141dccb06c6b86b214c7c12b7cf7.js"
+      id="jquery-js"
+    ></script>
+    <script type="text/javascript" id="bodhi_svg_inline-js-extra">
+      /* <![CDATA[ */
+      var svgSettings = { skipNested: '' };
+      /* ]]> */
+    </script>
+    <script
+      defer
+      type="text/javascript"
+      src="https://weworld.org.ua/wp-content/plugins/svg-support/js/min/svgs-inline-min.js"
+      id="bodhi_svg_inline-js"
+    ></script>
+    <script type="text/javascript" id="bodhi_svg_inline-js-after">
+      /* <![CDATA[ */
+      cssTarget = { Bodhi: 'img.img-svg', ForceInlineSVG: 'img-svg' };
+      ForceInlineSVGActive = 'false';
+      frontSanitizationEnabled = 'on';
+      /* ]]> */
+    </script>
+    <script
+      defer
+      type="text/javascript"
+      src="https://weworld.org.ua/wp-content/themes/s/js/fancybox.min.js"
+      id="fancybox-js"
+    ></script>
+    <script
+      defer
+      type="text/javascript"
+      src="https://weworld.org.ua/wp-content/cache/autoptimize/js/autoptimize_single_07a7e1b64c8508882d3b2e9462943d73.js"
+      id="gsap-js"
+    ></script>
+    <script
+      defer
+      type="text/javascript"
+      src="https://weworld.org.ua/wp-content/cache/autoptimize/js/autoptimize_single_f5ab6e6b5917f460ac1bc24ecc9d04f7.js"
+      id="barba-js"
+    ></script>
+    <script
+      defer
+      type="text/javascript"
+      src="https://weworld.org.ua/wp-content/cache/autoptimize/js/autoptimize_single_d01b47a4c6f303749ab44e1844573cdd.js"
+      id="toastify-js"
+    ></script>
+    <script
+      defer
+      type="text/javascript"
+      src="https://weworld.org.ua/wp-content/themes/s/js/swiper.min.js"
+      id="swiper-js"
+    ></script>
+    <script
+      defer
+      type="text/javascript"
+      src="https://weworld.org.ua/wp-content/cache/autoptimize/js/autoptimize_single_99101006cc08f8f7239a4a84bc829977.js"
+      id="all-js"
+    ></script>
+
+    <!--modals-->
+
+    <div id="mob_menu" style="display: none">
+      <nav>
+       <a href="/" class="btn btn4 sml"> Головна </a>
+
+        <a href="/news/" class="btn btn4 sml"> Новини </a>
+
+
+        <a href="/team/" class="btn btn4 sml"> Про нас </a>
+
+        <a href="/contacts/" class="btn btn4 sml"> Контакти </a>
+        <a
+          href="https://youthcenters.net.ua/join/"
+          target="_blank"
+          rel="nofollow noreferrer noopener"
+          class="btn btn3 big"
+        >
+          Вступити
+        </a>
+      </nav>
+    </div>
+  <!-- Code injected by live-server -->
+<script>
+	// <![CDATA[  <-- For SVG support
+	if ('WebSocket' in window) {
+		(function () {
+			function refreshCSS() {
+				var sheets = [].slice.call(document.getElementsByTagName("link"));
+				var head = document.getElementsByTagName("head")[0];
+				for (var i = 0; i < sheets.length; ++i) {
+					var elem = sheets[i];
+					var parent = elem.parentElement || head;
+					parent.removeChild(elem);
+					var rel = elem.rel;
+					if (elem.href && typeof rel != "string" || rel.length == 0 || rel.toLowerCase() == "stylesheet") {
+						var url = elem.href.replace(/(&|\?)_cacheOverride=\d+/, '');
+						elem.href = url + (url.indexOf('?') >= 0 ? '&' : '?') + '_cacheOverride=' + (new Date().valueOf());
+					}
+					parent.appendChild(elem);
+				}
+			}
+			var protocol = window.location.protocol === 'http:' ? 'ws://' : 'wss://';
+			var address = protocol + window.location.host + window.location.pathname + '/ws';
+			var socket = new WebSocket(address);
+			socket.onmessage = function (msg) {
+				if (msg.data == 'reload') window.location.reload();
+				else if (msg.data == 'refreshcss') refreshCSS();
+			};
+			if (sessionStorage && !sessionStorage.getItem('IsThisFirstTime_Log_From_LiveServer')) {
+				console.log('Live reload enabled.');
+				sessionStorage.setItem('IsThisFirstTime_Log_From_LiveServer', true);
+			}
+		})();
+	}
+	else {
+		console.error('Upgrade your browser. This Browser is NOT supported WebSocket for Live-Reloading.');
+	}
+	// ]]>
 </script>
-<script type="text/javascript" id="contact-form-7-js-before">
-  /* <![CDATA[ */
-  var wpcf7 = {
-    api: {
-      root: 'https:\/\/weworld.org.ua\/wp-json\/',
-      namespace: 'contact-form-7\/v1',
-    },
-  };
-  /* ]]> */
-</script>
-<script
-  defer
-  type="text/javascript"
-  src="https://weworld.org.ua/wp-content/cache/autoptimize/js/autoptimize_single_2912c657d0592cc532dff73d0d2ce7bb.js"
-  id="contact-form-7-js"
-></script>
-<script
-  defer
-  type="text/javascript"
-  src="https://weworld.org.ua/wp-content/cache/autoptimize/js/autoptimize_single_5f35141dccb06c6b86b214c7c12b7cf7.js"
-  id="jquery-js"
-></script>
-<script type="text/javascript" id="bodhi_svg_inline-js-extra">
-  /* <![CDATA[ */
-  var svgSettings = { skipNested: '' };
-  /* ]]> */
-</script>
-<script
-  defer
-  type="text/javascript"
-  src="https://weworld.org.ua/wp-content/plugins/svg-support/js/min/svgs-inline-min.js"
-  id="bodhi_svg_inline-js"
-></script>
-<script type="text/javascript" id="bodhi_svg_inline-js-after">
-  /* <![CDATA[ */
-  cssTarget = { Bodhi: 'img.img-svg', ForceInlineSVG: 'img-svg' };
-  ForceInlineSVGActive = 'false';
-  frontSanitizationEnabled = 'on';
-  /* ]]> */
-</script>
-<script
-  defer
-  type="text/javascript"
-  src="https://weworld.org.ua/wp-content/themes/s/js/fancybox.min.js"
-  id="fancybox-js"
-></script>
-<script
-  defer
-  type="text/javascript"
-  src="https://weworld.org.ua/wp-content/cache/autoptimize/js/autoptimize_single_07a7e1b64c8508882d3b2e9462943d73.js"
-  id="gsap-js"
-></script>
-<script
-  defer
-  type="text/javascript"
-  src="https://weworld.org.ua/wp-content/cache/autoptimize/js/autoptimize_single_f5ab6e6b5917f460ac1bc24ecc9d04f7.js"
-  id="barba-js"
-></script>
-<script
-  defer
-  type="text/javascript"
-  src="https://weworld.org.ua/wp-content/cache/autoptimize/js/autoptimize_single_d01b47a4c6f303749ab44e1844573cdd.js"
-  id="toastify-js"
-></script>
-<script
-  defer
-  type="text/javascript"
-  src="https://weworld.org.ua/wp-content/themes/s/js/swiper.min.js"
-  id="swiper-js"
-></script>
-<script
-  defer
-  type="text/javascript"
-  src="https://weworld.org.ua/wp-content/cache/autoptimize/js/autoptimize_single_99101006cc08f8f7239a4a84bc829977.js"
-  id="all-js"
-></script>
+</body>
 </html>
