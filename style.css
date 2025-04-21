@@ -808,7 +808,7 @@
 
 @font-face {
     font-family: 'f';
-    src: local('Manrope'), url(//weworld.org.ua/wp-content/themes/s/f/Manrope--wght.woff2) format('woff2'), url(/public/Manrope--wght.woff2) format('truetype');
+    src: local('Manrope'), url(/public/Manrope--wght.woff2) format('woff2'), url(/public/Manrope--wght.woff2) format('truetype');
     font-weight: 300;
     font-style: normal;
     font-display: swap
@@ -816,7 +816,7 @@
 
 @font-face {
     font-family: 'f';
-    src: local('Manrope'), url(//weworld.org.ua/wp-content/themes/s/f/Manrope--wght.woff2) format('woff2'), url(/public/Manrope--wght.woff2) format('truetype');
+    src: local('Manrope'), url(/public/Manrope--wght.woff2) format('woff2'), url(/public/Manrope--wght.woff2) format('truetype');
     font-weight: 400;
     font-style: normal;
     font-display: swap
@@ -824,7 +824,7 @@
 
 @font-face {
     font-family: 'f';
-    src: local('Manrope'), url(//weworld.org.ua/wp-content/themes/s/f/Manrope--wght.woff2) format('woff2'), url(/public/Manrope--wght.woff2) format('truetype');
+    src: local('Manrope'), url(/public/Manrope--wght.woff2) format('woff2'), url(/public/Manrope--wght.woff2) format('truetype');
     font-weight: 500;
     font-style: normal;
     font-display: swap
@@ -832,7 +832,7 @@
 
 @font-face {
     font-family: 'f';
-    src: local('Manrope'), url(//weworld.org.ua/wp-content/themes/s/f/Manrope--wght.woff2) format('woff2'), url(/public/Manrope--wght.woff2) format('truetype');
+    src: local('Manrope'), url(/public/Manrope--wght.woff2) format('woff2'), url(/public/Manrope--wght.woff2) format('truetype');
     font-weight: 600;
     font-style: normal;
     font-display: swap
@@ -840,7 +840,7 @@
 
 @font-face {
     font-family: 'f';
-    src: local('Manrope'), url(//weworld.org.ua/wp-content/themes/s/f/Manrope--wght.woff2) format('woff2'), url(/public/Manrope--wght.woff2) format('truetype');
+    src: local('Manrope'), url(/public/Manrope--wght.woff2) format('woff2'), url(/public/Manrope--wght.woff2) format('truetype');
     font-weight: 700;
     font-style: normal;
     font-display: swap
@@ -848,7 +848,7 @@
 
 @font-face {
     font-family: 'f';
-    src: local('Manrope'), url(//weworld.org.ua/wp-content/themes/s/f/Manrope--wght.woff2) format('woff2'), url(/public/Manrope--wght.woff2) format('truetype');
+    src: local('Manrope'), url(/public/Manrope--wght.woff2) format('woff2'), url(/public/Manrope--wght.woff2) format('truetype');
     font-weight: 800;
     font-style: normal;
     font-display: swap
@@ -1068,6 +1068,12 @@ ol {
     grid-gap: 0 1rem;
     width: 100%;
     overflow: hidden
+}
+
+.container_res {
+  padding: 0 3rem;
+  width: 100%;
+  overflow: hidden
 }
 
 @media (max-width:700px) {
@@ -2540,38 +2546,57 @@ textarea {
     }
 }
 
-.has-more .more {
-    visibility: hidden;
+.posts-wrapper {
+  width: 100%;
+}
+
+.posts-grid {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: 20px;
+  margin-top: 30px;
+}
+
+.post-card {
+  background-color: #EEEEEC;
+  width: 100%;
+  padding: 20px;
+  border-radius: 12px;
+  opacity: 0;
+  transform: translateY(40px);
+  animation: fadeInUp 0.7s ease-out forwards;
+  grid-column: span 6; /* важливо — кожен займає 6 з 12 */
+}
+
+@keyframes fadeInUp {
+  from {
     opacity: 0;
-    display: inline-block;
-    height: 0;
-    width: 0;
-    overflow: hidden;
-    transition: .3s
+    transform: translateY(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
-.has-more .less {
-    display: inline;
-    height: auto;
-    width: auto;
-    overflow: hidden;
-    transition: .3s
+.post-card:hover {
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
 }
 
-.has-more.active .more {
-    display: inline;
-    height: auto;
-    width: auto;
-    visibility: visible;
-    opacity: 1
+.post-card h3 {
+  font-size: 16px;
+  font-weight: 600;
+  margin-bottom: 10px;
 }
 
-.has-more.active .less {
-    display: inline-block;
-    height: 0;
-    width: 0;
-    visibility: hidden;
-    opacity: 0
+.post-card p {
+  font-size: 14px;
+  color: #444;
+  line-height: 1.5;
 }
 
-
+@media (max-width: 768px) {
+  .post-card {
+    grid-column: span 12;
+  }
+}
