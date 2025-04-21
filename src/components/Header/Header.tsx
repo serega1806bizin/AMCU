@@ -1,5 +1,6 @@
 import classNames from 'classnames';
-import { NavLink } from 'react-router-dom';
+import { Link } from 'react-router-dom';
+import logo from '/public/logo.svg';
 
 export const Header = () => {
   return (
@@ -7,22 +8,22 @@ export const Header = () => {
       <div className="container">
         <nav className="col">
           <div className="flrr">
-            <NavLink to="/" className={classNames('logo', 'btno')}>
-              <img src="/public/logo.svg" alt="" />
-            </NavLink>
+            <Link to="/" className={classNames('logo', 'btno')}>
+              <img src={logo} alt="" />
+            </Link>
             <div className="links">
-              <NavLink to="/" className="btn btn4 sml hid-s hid-m">
+              <Link to="/" className="btn btn4 sml hid-s hid-m">
                 Головна
-              </NavLink>
-              <NavLink to="/news" className="btn btn4 sml hid-s hid-m">
+              </Link>
+              <Link to="/news" className="btn btn4 sml hid-s hid-m">
                 Новини
-              </NavLink>
-              <NavLink to="/about-us" className="btn btn4 sml hid-s hid-m">
+              </Link>
+              <Link to="/about-us" className="btn btn4 sml hid-s hid-m">
                 Про нас
-              </NavLink>
-              <NavLink to="/contacts" className="btn btn4 sml hid-s hid-m">
+              </Link>
+              <Link to="/contacts" className="btn btn4 sml hid-s hid-m">
                 Контакти
-              </NavLink>
+              </Link>
             </div>
             <a
               href="https://youthcenters.net.ua/join/"
