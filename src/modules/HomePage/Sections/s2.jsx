@@ -1,4 +1,5 @@
 import { useAnimateInView } from '../useAnimateInView';
+import s3 from '/public/s3.png';
 
 export const S2 = () => {
   const sectionTitleRef = useAnimateInView();
@@ -34,7 +35,7 @@ export const S2 = () => {
           </div>
         </div>
         <div ref={calendarImageRef} className="img_ can-animate anim-l">
-          <img src="/s3.png" alt="Простір WE WORLD" />
+          <img src={s3} alt="Простір WE WORLD" />
         </div>
       </div>
     </div>

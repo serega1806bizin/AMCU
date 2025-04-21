@@ -1,4 +1,5 @@
 import { useAnimateInView } from '../useAnimateInView';
+import s1 from '/public/s1.png';
 
 export const S1 = () => {
   const titleRef = useAnimateInView();
@@ -23,7 +24,7 @@ export const S1 = () => {
             ref={imageRef}
             className="img can-animate anim-r"
             style={{
-              background: 'url(/s1.png) center/cover no-repeat',
+              background: `url(${s1}) center/cover no-repeat`,
             }}
           ></div>
         </div>
