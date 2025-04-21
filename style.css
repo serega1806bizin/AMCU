@@ -1802,7 +1802,7 @@ li+li {
 }
 
 .btn.btn1 {
-    background: var(--blk);
+    background: var(--acc);
     color: var(--wht);
     border-radius: 4px;
     padding: .75rem 4rem
@@ -2588,9 +2588,6 @@ textarea {
   }
 }
 
-.post-card:hover {
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
-}
 
 .post-card h3 {
   font-size: 16px;

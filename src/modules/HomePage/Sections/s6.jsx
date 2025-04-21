@@ -1,6 +1,6 @@
 import { useAnimateInView } from '../useAnimateInView';
 
-const EventCard = ({ href, image, title, text, delay = '0s' }) => {
+const EventCard = ({ image, title, text, delay = '0s' }) => {
   const ref = useAnimateInView();
 
   return (
@@ -25,13 +25,20 @@ const events = [
   {
     image: 'https://weworld.org.ua/wp-content/uploads/urban_rukh-768x768.jpg',
     title: 'Урбан рух «У міста є Я»',
+    // eslint-disable-next-line max-len
     text: '«У міста є Я» — це проєкт, який навчить тебе, як впливати на зміни в місті у веселій та легкій формі...',
   },
   {
     image:
+      // eslint-disable-next-line max-len
       'https://weworld.org.ua/wp-content/uploads/Rankovyj-bih-WE-WORLD-e1683608787509-768x594.jpg',
     title: '#SMR Ранковий біг що суботи Знамʼянка',
     text: 'Вже рік учасники бігового клубу #SMR збираються щосуботи...',
+  },
+  {
+    image: 'https://weworld.org.ua/wp-content/uploads/Trenuvannia-768x588.jpg',
+    title: 'Благодійне групове функціональне тренування',
+    text: 'Благодійне групове функціональне тренування. Для будь-якого віку...',
   },
   {
     image: 'https://weworld.org.ua/wp-content/uploads/Trenuvannia-768x588.jpg',

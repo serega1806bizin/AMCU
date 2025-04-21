@@ -2,6 +2,7 @@
   "name": "react-typescript-starter-pack",
   "version": "0.1.0",
   "dependencies": {
+    "@emailjs/browser": "^3.12.1",
     "@fortawesome/fontawesome-free": "^6.5.2",
     "@types/antd": "^0.12.32",
     "@types/react-animations": "^1.0.3",

@@ -1,3 +1,5 @@
+import { Link } from 'react-router-dom';
+
 export const Footer = () => {
   return (
     <footer>
@@ -14,17 +16,20 @@ export const Footer = () => {
           </div>
 
           <div className="menu">
-            <a className="btn btn4 h6">Новини</a>
-            <a className="btn btn4 h6">Про нас</a>
-            <a
+            <Link to="/news" className="btn btn4 h6">
+              Новини
+            </Link>
+            <Link to="/about-us" className="btn btn4 h6">
+              Про нас
+            </Link>
+            <Link
+              to="/contacts"
               target="_blank"
               rel="nofollow noreferrer noopener"
               className="btn btn4 h6"
             >
               Контакти
-            </a>
-
-            <a className="btn btn4 h6">Privacy Policy</a>
+            </Link>
           </div>
           <div className="soc">
             <a
