@@ -30,7 +30,7 @@ export const S3 = () => {
               },
               {
                 // eslint-disable-next-line max-len
-                img: '/terre.png',
+                img: './terre.png',
                 // eslint-disable-next-line max-len
                 name: 'Terre des hommes Провідна швейцарська організація з надання допомоги дітям',
               },
