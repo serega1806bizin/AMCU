@@ -1830,7 +1830,7 @@ li+li {
     color: white;
     border-radius: 4px;
     padding: .75rem 3rem;
-    max-width: 200px;
+    max-width: 400px;
 }
 
 .btn.btn3:hover,
@@ -2569,3 +2569,5 @@ textarea {
     visibility: hidden;
     opacity: 0
 }
+
+

@@ -5,21 +5,12 @@ import { Footer } from './components/Footer';
 
 export const App = () => {
   return (
-    <div className="App">
+    <>
       <Header />
-      <>
-        <div
-          className="brb"
-          data-barba="container"
-          data-barba-namespace="main"
-          data-ptype="/"
-        >
-          <main className="main">
-            <Outlet />
-          </main>
-          <Footer />
-        </div>
-      </>
-    </div>
+      <main>
+        <Outlet />
+      </main>
+      <Footer />
+    </>
   );
 };
