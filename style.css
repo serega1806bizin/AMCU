@@ -5,6 +5,8 @@
   font-style: normal
 }
 
+
+
 :root {
   --swiper-theme-color: #007aff
 }
@@ -795,8 +797,10 @@
 }
 
 @font-face {
+    /* stylelint-disable-next-line font-family-name-quotes */
     font-family: 'f';
-    src: local('Manrope'), url(//weworld.org.ua/wp-content/themes/s/f/Manrope--wght.woff2) format('woff2'), url(//weworld.org.ua/wp-content/themes/s/f/Manrope--wght.ttf) format('truetype');
+    /* stylelint-disable-next-line scss/operator-no-unspaced */
+    src: local('Manrope'), url(/public/Manrope--wght.woff2) format('woff2'), url(/public/Manrope--wght.woff2) format('truetype');
     font-weight: 200;
     font-style: normal;
     font-display: swap
@@ -804,7 +808,7 @@
 
 @font-face {
     font-family: 'f';
-    src: local('Manrope'), url(//weworld.org.ua/wp-content/themes/s/f/Manrope--wght.woff2) format('woff2'), url(//weworld.org.ua/wp-content/themes/s/f/Manrope--wght.ttf) format('truetype');
+    src: local('Manrope'), url(//weworld.org.ua/wp-content/themes/s/f/Manrope--wght.woff2) format('woff2'), url(/public/Manrope--wght.woff2) format('truetype');
     font-weight: 300;
     font-style: normal;
     font-display: swap
@@ -812,7 +816,7 @@
 
 @font-face {
     font-family: 'f';
-    src: local('Manrope'), url(//weworld.org.ua/wp-content/themes/s/f/Manrope--wght.woff2) format('woff2'), url(//weworld.org.ua/wp-content/themes/s/f/Manrope--wght.ttf) format('truetype');
+    src: local('Manrope'), url(//weworld.org.ua/wp-content/themes/s/f/Manrope--wght.woff2) format('woff2'), url(/public/Manrope--wght.woff2) format('truetype');
     font-weight: 400;
     font-style: normal;
     font-display: swap
@@ -820,7 +824,7 @@
 
 @font-face {
     font-family: 'f';
-    src: local('Manrope'), url(//weworld.org.ua/wp-content/themes/s/f/Manrope--wght.woff2) format('woff2'), url(//weworld.org.ua/wp-content/themes/s/f/Manrope--wght.ttf) format('truetype');
+    src: local('Manrope'), url(//weworld.org.ua/wp-content/themes/s/f/Manrope--wght.woff2) format('woff2'), url(/public/Manrope--wght.woff2) format('truetype');
     font-weight: 500;
     font-style: normal;
     font-display: swap
@@ -828,7 +832,7 @@
 
 @font-face {
     font-family: 'f';
-    src: local('Manrope'), url(//weworld.org.ua/wp-content/themes/s/f/Manrope--wght.woff2) format('woff2'), url(//weworld.org.ua/wp-content/themes/s/f/Manrope--wght.ttf) format('truetype');
+    src: local('Manrope'), url(//weworld.org.ua/wp-content/themes/s/f/Manrope--wght.woff2) format('woff2'), url(/public/Manrope--wght.woff2) format('truetype');
     font-weight: 600;
     font-style: normal;
     font-display: swap
@@ -836,7 +840,7 @@
 
 @font-face {
     font-family: 'f';
-    src: local('Manrope'), url(//weworld.org.ua/wp-content/themes/s/f/Manrope--wght.woff2) format('woff2'), url(//weworld.org.ua/wp-content/themes/s/f/Manrope--wght.ttf) format('truetype');
+    src: local('Manrope'), url(//weworld.org.ua/wp-content/themes/s/f/Manrope--wght.woff2) format('woff2'), url(/public/Manrope--wght.woff2) format('truetype');
     font-weight: 700;
     font-style: normal;
     font-display: swap
@@ -844,7 +848,7 @@
 
 @font-face {
     font-family: 'f';
-    src: local('Manrope'), url(//weworld.org.ua/wp-content/themes/s/f/Manrope--wght.woff2) format('woff2'), url(//weworld.org.ua/wp-content/themes/s/f/Manrope--wght.ttf) format('truetype');
+    src: local('Manrope'), url(//weworld.org.ua/wp-content/themes/s/f/Manrope--wght.woff2) format('woff2'), url(/public/Manrope--wght.woff2) format('truetype');
     font-weight: 800;
     font-style: normal;
     font-display: swap

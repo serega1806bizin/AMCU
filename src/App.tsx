@@ -7,10 +7,17 @@ export const App = () => {
   return (
     <>
       <Header />
-      <main>
-        <Outlet />
-      </main>
-      <Footer />
+      <div
+        className="brb"
+        data-barba="container"
+        data-barba-namespace="main"
+        data-ptype="/"
+      >
+        <main>
+          <Outlet />
+        </main>
+        <Footer />
+      </div>
     </>
   );
 };

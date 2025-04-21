@@ -1,22 +1,13 @@
+import { S1 } from './Sections/s1';
+import { S2 } from './Sections/s2';
+import { S3 } from './Sections/s3';
+
 export const HomePage = () => {
   return (
     <>
-      <div id="s1" className="screen">
-        <div className="container">
-          <div className="col">
-            <div className="hdr_">
-              <div className="hdr can-animate">
-                <h1>WE WORLD</h1>
-                <div className="div"></div>
-                <p className="h6">
-                  Молодіжна громадська організація,<br />
-                  яка виходить за рамки.
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+      <S1 />
+      <S2 />
+      <S3 />
     </>
   );
 };
