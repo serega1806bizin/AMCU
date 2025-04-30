@@ -75,9 +75,15 @@
         background: #F6A906;
       }
       #s1 .col {
+        min-height: calc(100vh - 6.5rem);
         display: flex;
         flex-direction: column;
       }
+
+      .override-height {
+        min-height: 0px !important;
+      }
+
       #s1 .hdr_ {
         display: flex;
         justify-content: space-between;

@@ -115,13 +115,11 @@ export const NewsPage = () => {
 
   return (
     <>
-      <div id="s1" className="screen" style={{ minHeight: '0px' }}>
+      <div id="s1" className="screen">
         <div className="container">
-          <div className="col">
-            <div className="hdr_">
-              <div ref={titleRef} className="hdr can-animate anim-t">
-                <h1>Новини</h1>
-              </div>
+          <div className="hdr_">
+            <div ref={titleRef} className="hdr can-animate anim-t">
+              <h1>Новини</h1>
             </div>
           </div>
         </div>
