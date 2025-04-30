@@ -17,7 +17,8 @@ export const S5 = () => {
 
   const handleClick = (clickedImg, index) => {
     const newThumbs = [...thumbnails];
-    newThumbs[index] = mainImage; // обмін місцями
+
+    newThumbs[index] = mainImage;
     setMainImage(clickedImg);
     setThumbnails(newThumbs);
   };
@@ -25,7 +26,9 @@ export const S5 = () => {
   return (
     <div id="s5" className="screen">
       <div className="container_res">
-        <div style={{ maxWidth: '800px', margin: '0 auto', textAlign: 'center' }}>
+        <div
+          style={{ maxWidth: '800px', margin: '0 auto', textAlign: 'center' }}
+        >
           <div
             style={{
               width: '100%',
@@ -56,7 +59,7 @@ export const S5 = () => {
           >
             {thumbnails.map((img, index) => (
               <img
-                key={`${img}-${index}`} // унікальний ключ навіть для однакових картинок
+                key={`${img}-${index}`}
                 src={img}
                 alt={`thumb-${index}`}
                 style={{
@@ -70,9 +73,11 @@ export const S5 = () => {
                 }}
                 onClick={() => handleClick(img, index)}
                 onMouseOver={e =>
+                  // eslint-disable-next-line no-param-reassign
                   (e.currentTarget.style.border = '2px solid #999')
                 }
                 onMouseOut={e =>
+                  // eslint-disable-next-line no-param-reassign
                   (e.currentTarget.style.border = '2px solid transparent')
                 }
               />

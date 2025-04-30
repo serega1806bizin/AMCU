@@ -1,4 +1,4 @@
-import { useAnimateInView } from '../useAnimateInView';
+import { useAnimateInView } from '../../../utils/useAnimateInView';
 
 const EventCard = ({ image, title, text, delay = '0s' }) => {
   const ref = useAnimateInView();

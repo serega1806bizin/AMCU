@@ -1,12 +1,8 @@
 import styles from './NotFoundPage.module.scss';
+import img from './Group 1251.svg';
 
 export const NotFoundPage = () => (
   <div className={styles.notFound}>
-    <h1>Такої сторінки не існує</h1>
-    <img
-      src="./img/page-not-found.png"
-      alt="page not found"
-      className={styles.notFound__image}
-    />
+    <img src={img} alt="page not found" className={styles.notFound__image} />
   </div>
 );

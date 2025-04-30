@@ -1,4 +1,4 @@
-import { useAnimateInView } from '../useAnimateInView';
+import { useAnimateInView } from '../../../utils/useAnimateInView';
 
 export const S1 = () => {
   const titleRef = useAnimateInView();

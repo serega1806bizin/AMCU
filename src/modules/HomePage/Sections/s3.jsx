@@ -1,4 +1,4 @@
-import { useAnimateInView } from '../useAnimateInView';
+import { useAnimateInView } from '../../../utils/useAnimateInView';
 
 const PartnerCard = ({ img, name, delay }) => {
   const ref = useAnimateInView();

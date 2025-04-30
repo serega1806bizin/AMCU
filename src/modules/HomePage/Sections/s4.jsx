@@ -1,5 +1,5 @@
 import React from 'react';
-import { useAnimateInView } from '../useAnimateInView';
+import { useAnimateInView } from '../../../utils/useAnimateInView';
 
 const posts = [
   {
