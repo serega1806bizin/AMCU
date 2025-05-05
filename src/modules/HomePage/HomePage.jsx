@@ -34,7 +34,7 @@ export const HomePage = () => {
       <S6 />
       <S7 />
       <S8 />
-      <S9 />
+      <S9 background="#f8f8f7" />
     </>
   );
 };

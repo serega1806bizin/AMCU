@@ -84,6 +84,7 @@ const Paragraph = React.forwardRef(({ text }, ref) => {
   );
 });
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const Teammate = ({ name, img, about }) => {
   return (
     <div className="col-1 in-view in-view-animated">
@@ -139,7 +140,7 @@ export const S2 = () => {
           <Paragraph text={content.p8} ref={p[7]} />
           <Paragraph text={content.p9} ref={p[8]} />
           <Paragraph text={content.p10} ref={p[9]} />
-          <Paragraph text={content.p11} ref={p[10]} />>
+          <Paragraph text={content.p11} ref={p[10]} />
           <Paragraph />
           <Paragraph />
           <img

@@ -6,6 +6,7 @@ import { HomePage } from './modules/HomePage/HomePage';
 import { ScrollToTop } from './ScrollToTop';
 import { NewsPage } from './modules/NewsPage/NewsPage';
 import { TeamPage } from './modules/TeamPage';
+import { S9 } from './modules/HomePage/Sections/s9';
 
 export const Root = () => (
   <Router>
@@ -16,7 +17,7 @@ export const Root = () => (
           <Route index element={<HomePage />} />
           <Route path="news" element={<NewsPage />} />
           <Route path="team" element={<TeamPage />} />
-          {/* <Route path="contacts" element={<ContactsPage />} /> */}
+          <Route path="contacts" element={<S9 background="#c7f860" />} />
           <Route path="*" element={<NotFoundPage />} />
         </Route>
       </Routes>

@@ -4,7 +4,7 @@ import { useRef, useState } from 'react';
 import emailjs from '@emailjs/browser';
 import { useAnimateInView } from '../../../utils/useAnimateInView';
 
-export const S9 = () => {
+export const S9 = ({ background }) => {
   const formRef = useRef();
   const [status, setStatus] = useState('');
 
@@ -40,7 +40,9 @@ export const S9 = () => {
         <div className="col">
           <div className="contacts form">
             <div className="hdr_">
-              <h2>Контакти</h2>
+              <h2>
+                <mark style={{ background: background }}>Контакти</mark>
+              </h2>
             </div>
 
             <div className="cnt_">
