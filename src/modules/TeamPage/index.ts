@@ -1,1 +1,1 @@
-export * from './DetailsTask';
+export * from './TeamPage';

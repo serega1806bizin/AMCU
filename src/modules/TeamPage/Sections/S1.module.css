@@ -1,0 +1,143 @@
+.ss1 {
+  padding: 4rem 0 0;
+  background: #f5e042;
+  height: calc(100vh - 6rem);
+}
+
+.ss1 .container,
+.ss1 .container > .col-10 {
+  height: 100%;
+}
+
+.ss1 .container > .col-10 {
+  display: flex;
+  flex-direction: column;
+}
+
+.grid {
+  display: grid;
+  grid-template: auto / repeat(12, 1fr);
+  grid-gap: 1rem;
+  width: 100%;
+}
+
+.ss1 .grid {
+  grid-template: auto / repeat(10, 1fr);
+  grid-gap: 1.5rem 1rem;
+}
+
+.ss1 .h1_ {
+  grid-column: 1/11;
+}
+
+.ss1 .hdiv {
+  grid-column: 1/11;
+}
+
+.ss1 .info__ {
+  grid-column: 1/11;
+  padding: 0 0 2rem;
+}
+
+.ss1 .cnt > * + * {
+  margin: 1rem 0 0;
+}
+#s2 {
+  padding: 4rem 0;
+}
+article {
+  grid-column: 4 / span 6;
+}
+#s2 .cnt .wp-caption {
+  width: 100% !important;
+}
+#s2 .cnt img {
+  width: 100%;
+  height: auto;
+  border-radius: 0.25rem;
+}
+.ss1 .img_ {
+  position: relative;
+  height: 100%;
+}
+.ss1 .img_ img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1;
+  right: 0;
+  bottom: 0;
+}
+
+.team {
+  padding: 2rem 0;
+  grid-template: auto / repeat(2, 1fr);
+  grid-gap: 4rem 2rem;
+}
+.team .img_ {
+  position: relative;
+  padding: 100% 0 0;
+  border-radius: 0.25rem;
+  overflow: hidden;
+}
+.team .img_ img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+}
+.team .hdr {
+  padding: 2rem 0 1rem;
+}
+
+@media (max-width: 1600px) {
+  .ss1,
+  .ss1 .container,
+  .ss1 .container > .col-10 {
+    height: auto;
+  }
+  .ss1 .img_ {
+    position: relative;
+    padding: 62.5% 0 0;
+  }
+  .ss1 .container > .col-10 {
+    display: block;
+  }
+  .ss1 .h1_ {
+    grid-column: 1 / span 7;
+  }
+  article {
+    grid-column: 3 / span 8;
+  }
+}
+@media (max-width: 1200px) {
+  .ss1 .h1_ {
+    grid-column: 1 / span 10;
+  }
+  article {
+    grid-column: 2 / span 10;
+  }
+}
+@media (max-width: 700px) {
+  .hdiv {
+    display: none;
+  }
+  .ss1 .img_ img {
+    right: -1rem;
+    max-width: calc(100% + 1rem);
+  }
+  article {
+    grid-column: 1 / span 6;
+  }
+
+  .team {
+    grid-template: auto / repeat(2, 1fr);
+    grid-gap: 2rem 0.5rem;
+  }
+  .team .hdr {
+    padding: 1rem 0 0.5rem;
+    height: 4.5rem;
+  }
+}

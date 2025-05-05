@@ -33,9 +33,9 @@ export const Header = () => {
                 Новини
               </Link>
               <Link
-                to="/about-us"
+                to="/team"
                 className={classNames('btn btn4 sml hid-s hid-m', {
-                  activeCat: path === '/about-us',
+                  activeCat: path === '/team',
                 })}
               >
                 Про нас
