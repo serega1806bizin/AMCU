@@ -1,5 +1,5 @@
 import { useAnimateInView } from '../../../utils/useAnimateInView';
-import styles from './S1.module.css';
+import styles from './Styles.module.css';
 
 const content = {
   title: 'Команда WE WORLD',

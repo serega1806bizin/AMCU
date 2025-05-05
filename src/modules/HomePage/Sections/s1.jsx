@@ -6,7 +6,7 @@ export const S1 = () => {
   const imageRef = useAnimateInView();
 
   return (
-    <div className="screen">
+    <div id="s1" className="screen">
       <div className="container">
         <div className="col">
           <div className="hdr_">
